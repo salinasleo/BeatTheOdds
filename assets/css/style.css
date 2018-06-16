@@ -1,0 +1,15 @@
+.banner{
+    height:150px;
+}
+
+.form1, .form2, .form3 {
+    height: 200px;
+}
+
+.liveInput, .liveOdds {
+    height: 300px;
+}
+
+.footer {
+    height:150px;
+}
