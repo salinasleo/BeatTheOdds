@@ -50,7 +50,8 @@ body {
     height:150px;
 }
 
-h1 {
+h1, h5 {
     font-family: 'Permanent Marker', cursive;
     color: white;
 }
+
