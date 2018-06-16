@@ -1,15 +1,56 @@
+body {
+    background-image: url('../../assets/images/background1.jpg');
+    background-size: cover;
+    margin-top: 35px;
+}
 .banner{
-    height:150px;
+    background-image: url('../../assets/images/football.jpg');
+    background-size: cover;
+    height:150px;    
+    width: 100%;
 }
 
 .form1, .form2, .form3 {
     height: 200px;
 }
 
+.form1{
+    background-image: url('../../assets/images/nfl.jpg');
+    background-size: cover;
+}
+
+.form2 {
+        background-image: url('../../assets/images/tv2.jpg');
+        background-size: cover;
+}
+
+.form3{
+    background-image: url('../../assets/images/nfl2.jpg');
+    background-size: cover;
+}
+
+.form2 {
+    background-color: darkgrey;
+}
+
 .liveInput, .liveOdds {
-    height: 300px;
+    height: 260px;
+}
+.liveInput {
+    background-image: url('../../assets/images/fieldupper.png');
+
+}
+
+.liveOdds {
+    background-image: url('../../assets/images/fieldlower.png');
+
 }
 
 .footer {
     height:150px;
+}
+
+h1 {
+    font-family: 'Permanent Marker', cursive;
+    color: white;
 }
