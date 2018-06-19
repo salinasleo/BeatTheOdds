@@ -1,12 +1,15 @@
+//Global variables
 var timeLeft = 60;
 var intervalId;
 
+//Initialize function
 function startGame() {
     var timeLeft = 60;
     timer();
     run();
 }
 
+//Timer functions
 function timer() {
     timeLeft--;
     $("#timeleft").html("Time Left: "+ timeLeft + " seconds");   
@@ -24,3 +27,4 @@ function run(){
 function stop() {
     clearInterval(intervalId);
 }
+//End timer functions
