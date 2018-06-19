@@ -8,6 +8,15 @@ body {
     background-size: cover;
     height:150px;    
     width: 100%;
+    border-top: 5px;
+    border-top-color: white;
+    border-top-style: solid;
+    border-left: 5px;
+    border-left: white;
+    border-left-style: solid;
+    border-right: 5px;
+    border-right-color: white;
+    border-right-style: solid;
 }
 
 .form1, .form2, .form3 {
@@ -17,16 +26,23 @@ body {
 .form1{
     background-image: url('../../assets/images/nfl.jpg');
     background-size: cover;
+    border-left: 5px;
+    border-left: white;
+    border-left-style: solid;
+    
 }
 
 .form2 {
-        background-image: url('../../assets/images/tv2.jpg');
-        background-size: cover;
+    background-image: url('../../assets/images/tv2.jpg');
+    background-size: cover;
 }
 
 .form3{
     background-image: url('../../assets/images/nfl2.jpg');
     background-size: cover;
+    border-right: 5px;
+    border-right-color: white;
+    border-right-style: solid;
 }
 
 .form2 {
@@ -35,6 +51,12 @@ body {
 
 .liveInput, .liveOdds {
     height: 260px;
+    border-left: 5px;
+    border-left: white;
+    border-left-style: solid;
+    border-right: 5px;
+    border-right-color: white;
+    border-right-style: solid;
 }
 .liveInput {
     background-image: url('../../assets/images/fieldupper.png');
@@ -43,6 +65,10 @@ body {
 
 .liveOdds {
     background-image: url('../../assets/images/fieldlower.png');
+    border-bottom: 5px;
+    border-bottom: white;
+    border-bottom-style: solid;
+
 
 }
 
