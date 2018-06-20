@@ -1,6 +1,9 @@
 //Global variables
 var timeLeft = 60;
 var intervalId;
+var currentBet = 0;
+var payout = 1;
+var multiplier = 3;
 
 //Initialize function
 function startGame() {
@@ -28,3 +31,33 @@ function stop() {
     clearInterval(intervalId);
 }
 //End timer functions
+
+//Payout mechanics
+function payoutMath() {
+    payout = currentBet * multiplier;
+    $('#payout').text(payout);
+}
+
+$(document).ready(function(){
+
+//Begin betting mechanics
+$('#20chipbtn').on('click', function() {
+    currentBet = currentBet + 20;
+    console.log(currentBet);
+    $('#current-bet').text(currentBet);
+    payoutMath();
+})
+$('#50chipbtn').on('click', function() {
+    currentBet = currentBet + 50;
+    console.log(currentBet);
+    $('#current-bet').text(currentBet);
+    payoutMath();
+})
+$('#100chipbtn').on('click', function() {
+    currentBet = currentBet + 100;
+    console.log(currentBet);
+    $('#current-bet').text(currentBet);
+    payoutMath();
+})
+
+});

@@ -2,6 +2,8 @@ body {
     background-image: url('../../assets/images/background1.jpg');
     background-size: cover;
     margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .banner{
@@ -105,8 +107,13 @@ body {
     height:150px;
 }
 
-h1, h5 {
+h1 {
     font-family: 'Permanent Marker', cursive;
+    color: white;
+}
+
+h5 {
+    font-family: 'Rajdhani', sans-serif;
     color: white;
 }
 
@@ -124,7 +131,18 @@ h1, h5 {
     border-top: 5px;
     border-top: white;
     border-top-style: solid;
-    align-items: left;
+    align-content: left;
+}
+
+#chip {
+    align-self: left;
+}
+
+.chipbtn {
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
 }
 
 
