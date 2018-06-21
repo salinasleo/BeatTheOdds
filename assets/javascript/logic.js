@@ -1,3 +1,5 @@
+//This is a test
+
 //Global variables
 var timeLeft = 60;
 var intervalId;
