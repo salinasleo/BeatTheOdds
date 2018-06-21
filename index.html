@@ -16,7 +16,14 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
-    
+    <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameLabel" aria-hidden="true" style="background:none;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" id='modal-background'>
+                <br><br><br><br><br><br><br><br><br><br>
+              <center><img src='assets/images/bigwin.png'></center>
+          </div>
+        </div>
+      </div>
     <div class='container'>
         <div class='row'>
         <div class='col banner'>
@@ -41,14 +48,14 @@
                 
             </div>
           
-            <div class='col-md-4 betting'>
+            <div class='col-md-4 betting' id='betting'>
                 <br><br><br><br><br>
-                <button class='chipbtn' id='20chipbtn'><img id='20chip chip' src='assets/images/20chip.png'></button><br><br>
-                <button class='chipbtn' id='50chipbtn'><img id='50chip chip' src='assets/images/50chip.png'></button><br><br>
-                <button class='chipbtn' id='100chipbtn'><img id='100chip chip' src='assets/images/100chip.png'></button>
+                <button class='chipbtn' id='twentychipbtn'><img id='20chip chip' src='assets/images/20chip.png'></button><img id='singletwenty' src='assets/images/20chip.png'><img id='twentystack' src='assets/images/20stack.png'><br><br>
+                <button class='chipbtn' id='fiftychipbtn'><img id='50chip chip' src='assets/images/50chip.png'></button><img id='singlefifty' src='assets/images/50chip.png'><img id='fiftystack' src='assets/images/50stack.png'><br><br>
+                <button class='chipbtn' id='hundredchipbtn'><img id='100chip chip' src='assets/images/100chip.png'></button><img id='singlehundred' src='assets/images/100chip.png'><img id='hundredstack' src='assets/images/100stack.png'>
             </div>
             <div class='col-md-8 field'>
-                    <br><br>
+                    <br><br><br><br><br><br><br><br><br><br>
                     <img id='footballtracker' src='assets/images/footballtrackersmall.png'>
             </div>
         </div>
