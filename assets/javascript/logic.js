@@ -61,3 +61,14 @@ $('#100chipbtn').on('click', function() {
 })
 
 });
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAlhmUCxCSXYXAmhCS4egyw3k7GNm89Hew",
+    authDomain: "beattheodds-b1afe.firebaseapp.com",
+    databaseURL: "https://beattheodds-b1afe.firebaseio.com",
+    projectId: "beattheodds-b1afe",
+    storageBucket: "beattheodds-b1afe.appspot.com",
+    messagingSenderId: "160454565604"
+  };
+  firebase.initializeApp(config);
