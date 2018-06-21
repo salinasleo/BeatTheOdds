@@ -60,4 +60,17 @@ $('#100chipbtn').on('click', function() {
     payoutMath();
 })
 
+$('#footballtracker').on('click', function() {
+    let start = Date.now();
+
+    let timer = setInterval(function() {
+      let timePassed = Date.now() - start;
+
+      footballtracker.style.left = timePassed / 5 + 'px';
+
+      if (timePassed > 3250) clearInterval(timer);
+
+    }, 20);
+  })
+
 });
