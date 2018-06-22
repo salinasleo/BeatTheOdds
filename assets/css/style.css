@@ -107,7 +107,7 @@ body {
     height:150px;
 }
 
-h1 {
+h1, h3 {
     font-family: 'Permanent Marker', cursive;
     color: white;
 }
@@ -167,6 +167,14 @@ position: relative;
 
 #modal-background {
     background: none;
+}
+
+#leaderboardmodal {
+    background: url('../../assets/images/black_paper.png');
+    height: 500px;
+    width: 500px;
+    border: solid white 7px;
+    margin-top: 100px;
 }
 
 #singletwenty {
