@@ -1,4 +1,13 @@
-//This is a test
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAlhmUCxCSXYXAmhCS4egyw3k7GNm89Hew",
+    authDomain: "beattheodds-b1afe.firebaseapp.com",
+    databaseURL: "https://beattheodds-b1afe.firebaseio.com",
+    projectId: "beattheodds-b1afe",
+    storageBucket: "beattheodds-b1afe.appspot.com",
+    messagingSenderId: "160454565604"
+  };
+  firebase.initializeApp(config);
 
 //Global variables
 var timeLeft = 60;
@@ -6,6 +15,21 @@ var intervalId;
 var currentBet = 0;
 var payout = 1;
 var multiplier = 3;
+var dataRef = firebase.database();
+var leadersDefault= [
+      { user: 'BJackson',
+        score: 501,
+    },
+      { user: 'SYoung',
+      score: 502,
+    },
+      { user: 'JMontana',
+      score: 503,
+  }
+  ]
+var leaderBoard= database.ref().leaders
+
+var database= firebase.database()
 
 //Initialize function
 function startGame() {
@@ -41,13 +65,16 @@ function payoutMath() {
 }
 
 $(document).ready(function(){
-
+// Setting the leader board
+based()
 //Begin betting mechanics
 $('#20chipbtn').on('click', function() {
     currentBet = currentBet + 20;
     console.log(currentBet);
     $('#current-bet').text(currentBet);
     payoutMath();
+    console.log(leaderBoard)
+    
 })
 $('#50chipbtn').on('click', function() {
     currentBet = currentBet + 50;
@@ -62,15 +89,17 @@ $('#100chipbtn').on('click', function() {
     payoutMath();
 })
 
+function based(){
+    database.ref().set({
+        leaders: leadersDefault
+      });
+      database.ref().on("value", function(snapshot) {  console.log(snapshot)})
+      
+}
+
 });
 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAlhmUCxCSXYXAmhCS4egyw3k7GNm89Hew",
-    authDomain: "beattheodds-b1afe.firebaseapp.com",
-    databaseURL: "https://beattheodds-b1afe.firebaseio.com",
-    projectId: "beattheodds-b1afe",
-    storageBucket: "beattheodds-b1afe.appspot.com",
-    messagingSenderId: "160454565604"
-  };
-  firebase.initializeApp(config);
+
+
+
+
