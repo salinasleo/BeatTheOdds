@@ -10,7 +10,7 @@
   firebase.initializeApp(config);
 
 //Global variables
-var timeLeft = 5;
+var timeLeft = 120;
 var intervalId;
 var currentBet = 0;
 var payout = 1;
@@ -27,6 +27,9 @@ var leadersDefault= [
       score: 503,
   }
   ]
+var leftTeam;
+var rightTeam;
+
 //var leaderBoard= database.ref().leaders
 
 var database= firebase.database()
@@ -37,9 +40,11 @@ var hundreds = 0;
 
 //Initialize function
 function startGame() {
-    var timeLeft = 60;
+    var timeLeft = 120;
     timer();
     run();
+    $('#dall').show();
+    $('#wasr').show();
 }
 
 //Timer functions
@@ -98,14 +103,49 @@ function chipHide() {
     $('#hundredstack').hide();
 }
 
+function rightHundred() {
+  $('#footballtracker').animate({
+    left: '+=100%'
+  }, 3000, function() {
+    console.log('hundred yards right')
+  });
+  }
+
+function leftHundred() {
+  $('#footballtracker').animate({
+    left: '-=100%'
+  }, 3000, function() {
+    console.log('hundred yards left')
+  });
+  }
+
+function rightFifty() {
+  $('#footballtracker').animate({
+    left: '+=50%'
+  }, 1500, function() {
+    console.log('hundred yards left')
+  });
+  }
+
+function leftFifty() {
+  $('#footballtracker').animate({
+    left: '-=50%'
+  }, 1500, function() {
+    console.log('hundred yards left')
+  });
+  }
+
 $(document).ready(function(){
 
 // Setting the leader board
 
 //based()
+$('#footballtracker').on('click', function(){
+  startGame();
+})
 
-
-
+  $('.teamleft').hide();
+  $('.teamright').hide();
 
     chipHide();
     
@@ -122,32 +162,17 @@ $('#twentychipbtn').on('click', function() {
     $('#current-bet').text(currentBet);
     payoutMath();
 
-    //console.log(leaderBoard)
-    
-
-
-    //Animation
-    let start = Date.now();
-
-    let timer = setInterval(function() {
-      let timePassed = Date.now() - start;
-
-      twentychipbtn.style.left = timePassed / 5 + 'px';
-
-      if (timePassed > 1000) {
-        twentychipbtn.style.left = 0;
-        if (twenties < 2) {
-            $('#singletwenty').show();
-        }
-        else if (twenties >= 2){
-            $('#singletwenty').hide();
-            $('#twentystack').show();
-        }
-        clearInterval(timer);
-      }
-    }, 20);
-
-
+    $('#twentychipbtn').animate({
+      left: 200
+    }, 'slow', function() {twentychipbtn.style.left = 0;
+      if (twenties < 2) {
+                  $('#singletwenty').show();
+              }
+              else if (twenties >= 2){
+                  $('#singletwenty').hide();
+                  $('#twentystack').show();
+             }
+        });
 })
 $('#fiftychipbtn').on('click', function() {
     currentBet = currentBet + 50;
@@ -156,26 +181,17 @@ $('#fiftychipbtn').on('click', function() {
     $('#current-bet').text(currentBet);
     payoutMath();
 
-    //Animation
-    let start = Date.now();
-
-    let timer = setInterval(function() {
-      let timePassed = Date.now() - start;
-
-      fiftychipbtn.style.left = timePassed / 5 + 'px';
-
-      if (timePassed > 1000) {
-          clearInterval(timer);
-          fiftychipbtn.style.left = 0;
-          if (fifties < 2) {
-            $('#singlefifty').show();
-        }
-        else if (fifties >= 2){
-            $('#singlefifty').hide();
-            $('#fiftystack').show();
-        }
-      }
-    }, 20);
+    $('#fiftychipbtn').animate({
+      left: 200
+    }, 'slow', function() {fiftychipbtn.style.left = 0;
+      if (fifties < 2) {
+                  $('#singlefifty').show();
+              }
+              else if (fifties >= 2){
+                  $('#singlefifty').hide();
+                  $('#fiftystack').show();
+             }
+        });
 })
 $('#hundredchipbtn').on('click', function() {
     currentBet = currentBet + 100;
@@ -185,27 +201,17 @@ $('#hundredchipbtn').on('click', function() {
     payoutMath();
 
     //Animation
-    let start = Date.now();
-
-    let timer = setInterval(function() {
-      let timePassed = Date.now() - start;
-
-      hundredchipbtn.style.left = timePassed / 5 + 'px';
-
-      if (timePassed > 1000) {
-          clearInterval(timer);
-          hundredchipbtn.style.left = 0;
-          if (hundreds < 2) {
-            $('#singlehundred').show();
-        }
-        else if (hundreds >= 2){
-            $('#singlehundred').hide();
-            $('#hundredstack').show();
-        }
-      }
-      
-    }, 20);
-
+    $('#hundredchipbtn').animate({
+      left: 200
+    }, 'slow', function() {hundredchipbtn.style.left = 0;
+      if (hundreds < 2) {
+                  $('#singlehundred').show();
+              }
+              else if (hundreds >= 2){
+                  $('#singlehundred').hide();
+                  $('#hundredstack').show();
+             }
+        });
 })
 
 function based(){
@@ -215,22 +221,4 @@ function based(){
       database.ref().on("value", function(snapshot) {  console.log(snapshot)})
       
 }
-$('#footballtracker').on('click', function() {
-    startGame();
-    //Animation
-    let start = Date.now();
-
-    let timer = setInterval(function() {
-      let timePassed = Date.now() - start;
-
-      footballtracker.style.left = timePassed / 5 + 'px';
-
-      if (timePassed > 3250) clearInterval(timer);
-
-    }, 20);
-  })
 });
-
-
-
-
