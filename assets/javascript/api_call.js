@@ -1,4 +1,8 @@
 
+gameForTesting = "35c8c305-f698-472a-809d-4b787497be93";
+gameForTesting2 = "441885c0-9482-410e-8ac3-7473052f34bd";
+
+
 function getGameIds(year) {
 
     var gameIds ;
@@ -44,7 +48,8 @@ function getSeveralSeasons() {
     setTimeout(() => shuffle(), 3600);
 }
 
-getSeveralSeasons();
+// getSeveralSeasons();
+// turned off during testing
 
 var gameNumber=0;
 var numberGames;
@@ -61,7 +66,9 @@ function shuffle() {
 function playbyplay() {
 
   
-    gamePlaying = gamesArray[gameNumber];
+    // gamePlaying = gamesArray[gameNumber];
+    // changed during testing
+    gamePlaying=gameForTesting2;
     gameNumber++;
     if (gameNumber > numberGames) {
         gameNumber=0;
@@ -75,8 +82,8 @@ function playbyplay() {
       }).then(function(data) {
         gameDetails=data;
         console.log(gameDetails);
-        ballMovement(gameDetails);
         finalScore(gameDetails);
+        ballMovement(gameDetails);
         scoringPlays(gameDetails);
         eventDetails(gameDetails);
     });
@@ -99,5 +106,28 @@ function scoringPlays(gameDetails){
 
 function eventDetails(gameDetails){
     // get venue, home team, visiting team, date, attendance
-
+    attendance = gameDetails.attendance;
+    console.log( attendance );
+    date= gameDetails.scheduled;
+    console.log(date  );
+    dateFormatted= moment(date).format('l');
+    console.log(dateFormatted );
+    venue=gameDetails.summary.venue.name + " in " + gameDetails.summary.venue.city + " " + gameDetails.summary.venue.state;
+    console.log( venue );
+    awayTeam = gameDetails.summary.away.name;
+    console.log( awayTeam );
+    awayTeamAlias = gameDetails.summary.away.alias;
+    console.log(awayTeamAlias  );
+    awayTeamPoints = gameDetails.summary.away.points;
+    console.log(awayTeamPoints  );
+    homeTeam = gameDetails.summary.home.name;
+    console.log( homeTeam );
+    homeTeamAlias = gameDetails.summary.home.alias;
+    console.log(homeTeamAlias  );
+    homeTeamPoints = gameDetails.summary.home.points;
+    console.log(homeTeamPoints  );
+    season = gameDetails.summary.season.year + " " + gameDetails.summary.season.name + " Season, Week #" + gameDetails.summary.week.title;
+    console.log( season );
+    
+    
 }
