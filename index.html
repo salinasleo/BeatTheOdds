@@ -7,16 +7,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="assets/javascript/logic.js"></script>
+
     <script src="assets/javascript/api_call.js"></script>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
 
 </head>
 <body>
-    <center>
+    <div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameLabel" aria-hidden="true" style="background:none;">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" id='modal-background'>
+                <br><br><br><br><br><br><br><br><br><br>
+              <center><img src='assets/images/bigwin.png'></center>
+          </div>
+        </div>
+      </div>
+<center>
+      <div class="modal fade" id="leaderModal" tabindex="-1" role="dialog" aria-labelledby="nameLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">      
+                <div class="modal-content" id='leaderboardmodal'>
+                    <div class='col-md-12'>
+                        <center>
+                        <h1 style='text-decoration: underline;'>Leaderboard:</h1>
+                            <h3><ol>
+                                <li><h3>T. Brady - 34560 chips</h3></li>
+                                <li><h3>A. Rogers - 32460 chips</h3></li>
+                                <li><h3>O. Beckham - 31503 chips</h3></li>
+                                <li><h3>P. Manning - 30265 chips</h3></li>
+                                <li><h3>D. Bryant - 29854 chips</h3></li>
+                                <li><h3>B. Favre - 28459 chips</h3></li>
+                                <li><h3>B. Jackson - 27596 chips</h3></li>
+                                <li><h3>E. Manning - 25689 chips</h3></li>
+                                <li><h3>T. Owens - 23569 chips</h3></li>
+                                <li><h3>T. Romo - 19856 chips</h3></li>
+                                
+                            </ol>
+                    </center>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</center>
     <div class='container'>
         <div class='row'>
         <div class='col banner'>
@@ -24,37 +61,38 @@
             <center><h1>Beat the Odds!</h1></center>
         </div>
     </div>
+
         <div class='row input'>
             <div class='col-md-3 form1'>
-                Info 1
+                
             </div>
             <div class='col-md-6 form2'>
                 <center>
-                <br><br>
-                <h5>Current Bet: 10</h5>
-                <h5>Multiplyer: 3x</h5>
+                <br>
+                <h5>Current Bet: <span id='current-bet'>0</span></h5>
+                <h5>Multiplier: 3x</h5>
                 <h5><span id='timeleft'>Time Left:</span></h5>
-                <h5>Payout: 30</h5>
-            </center>
+                <h5>Payout: <span id='payout'>0</span></h5>
+            
             </div>
             <div class='col-md-3 form3'>
-                Info 3
+                
             </div>
-           
-            <div class='col-md-4 betting'>
-                <br>
-                <img id='20chip chip' src='assets/images/20chip.png'><br>
-                <img id='50chip chip' src='assets/images/50chip.png'><br>
-                <img id='100chip chip' src='assets/images/100chip.png'>
+          
+            <div class='col-md-4 betting' id='betting'>
+                <br><br><br><br><br>
+                <button class='chipbtn' id='twentychipbtn'><img id='20chip chip' src='assets/images/20chip.png'></button><img id='singletwenty' src='assets/images/20chip.png'><img id='twentystack' src='assets/images/20stack.png'><br><br>
+                <button class='chipbtn' id='fiftychipbtn'><img id='50chip chip' src='assets/images/50chip.png'></button><img id='singlefifty' src='assets/images/50chip.png'><img id='fiftystack' src='assets/images/50stack.png'><br><br>
+                <button class='chipbtn' id='hundredchipbtn'><img id='100chip chip' src='assets/images/100chip.png'></button><img id='singlehundred' src='assets/images/100chip.png'><img id='hundredstack' src='assets/images/100stack.png'>
             </div>
             <div class='col-md-8 field'>
-                    <br><br>
+                    <br><br><br><br><br><br><br><br><br><br>
                     <img id='footballtracker' src='assets/images/footballtrackersmall.png'>
             </div>
         </div>
 
         </div>
     </div>
-</center>
+
 </body>
 </html>
