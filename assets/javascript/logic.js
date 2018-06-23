@@ -1,9 +1,35 @@
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAlhmUCxCSXYXAmhCS4egyw3k7GNm89Hew",
+    authDomain: "beattheodds-b1afe.firebaseapp.com",
+    databaseURL: "https://beattheodds-b1afe.firebaseio.com",
+    projectId: "beattheodds-b1afe",
+    storageBucket: "beattheodds-b1afe.appspot.com",
+    messagingSenderId: "160454565604"
+  };
+  firebase.initializeApp(config);
+
 //Global variables
 var timeLeft = 5;
 var intervalId;
 var currentBet = 0;
 var payout = 1;
 var multiplier = 3;
+var dataRef = firebase.database();
+var leadersDefault= [
+      { user: 'BJackson',
+        score: 501,
+    },
+      { user: 'SYoung',
+      score: 502,
+    },
+      { user: 'JMontana',
+      score: 503,
+  }
+  ]
+var leaderBoard= database.ref().leaders
+
+var database= firebase.database()
 
 var twenties = 0;
 var fifties = 0;
@@ -74,12 +100,17 @@ function chipHide() {
 
 $(document).ready(function(){
 
+// Setting the leader board
+based()
+=======
+
     chipHide();
     
     $('.form1').on('click', function() {
         $('#leaderModal').modal('toggle');
     })
     
+
 //Begin betting mechanics
 $('#twentychipbtn').on('click', function() {
     currentBet = currentBet + 20;
@@ -87,6 +118,10 @@ $('#twentychipbtn').on('click', function() {
     console.log(currentBet);
     $('#current-bet').text(currentBet);
     payoutMath();
+
+    console.log(leaderBoard)
+    
+=======
 
     //Animation
     let start = Date.now();
@@ -108,6 +143,7 @@ $('#twentychipbtn').on('click', function() {
         clearInterval(timer);
       }
     }, 20);
+
 
 })
 $('#fiftychipbtn').on('click', function() {
@@ -169,6 +205,19 @@ $('#hundredchipbtn').on('click', function() {
 
 })
 
+function based(){
+    database.ref().set({
+        leaders: leadersDefault
+      });
+      database.ref().on("value", function(snapshot) {  console.log(snapshot)})
+      
+}
+
+});
+
+
+
+=======
 $('#footballtracker').on('click', function() {
     startGame();
     //Animation
@@ -184,5 +233,6 @@ $('#footballtracker').on('click', function() {
     }, 20);
   })
   });
+
 
 
