@@ -27,7 +27,7 @@ var leadersDefault= [
       score: 503,
   }
   ]
-var leaderBoard= database.ref().leaders
+//var leaderBoard= database.ref().leaders
 
 var database= firebase.database()
 
@@ -101,8 +101,8 @@ function chipHide() {
 $(document).ready(function(){
 
 // Setting the leader board
-based()
-=======
+//based()
+
 
     chipHide();
     
@@ -119,9 +119,9 @@ $('#twentychipbtn').on('click', function() {
     $('#current-bet').text(currentBet);
     payoutMath();
 
-    console.log(leaderBoard)
+    //console.log(leaderBoard)
     
-=======
+
 
     //Animation
     let start = Date.now();
@@ -212,12 +212,6 @@ function based(){
       database.ref().on("value", function(snapshot) {  console.log(snapshot)})
       
 }
-
-});
-
-
-
-=======
 $('#footballtracker').on('click', function() {
     startGame();
     //Animation
@@ -232,7 +226,10 @@ $('#footballtracker').on('click', function() {
 
     }, 20);
   })
-  });
+});
+
+
+  
 
 
 
