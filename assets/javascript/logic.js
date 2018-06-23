@@ -101,7 +101,10 @@ function chipHide() {
 $(document).ready(function(){
 
 // Setting the leader board
+
 //based()
+
+
 
 
     chipHide();
@@ -228,8 +231,6 @@ $('#footballtracker').on('click', function() {
   })
 });
 
-
-  
 
 
 
