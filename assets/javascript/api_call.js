@@ -5,7 +5,7 @@ gameForTesting2 = "441885c0-9482-410e-8ac3-7473052f34bd";
 
 function getGameIds(year) {
 
-    var gameIds ;
+    var gameIds;
 
     // this is the schedule api from sportradar
     console.log(Date.now())
@@ -27,11 +27,11 @@ function getGameIds(year) {
 var gamesArray = [];
 
 function parseGames(gameIds) {
-     for (i = 0; i < gameIds.length; i++) {
+    for (i = 0; i < gameIds.length; i++) {
         for (y = 0; y < gameIds[i].games.length; y++) {
-                 gamesArray.push( gameIds[i].games[y].id )
-                // gameIds[1].games[5].id);
-               
+            gamesArray.push(gameIds[i].games[y].id)
+            // gameIds[1].games[5].id);
+
         }
     }
     console.log(gamesArray);
@@ -41,7 +41,7 @@ function parseGames(gameIds) {
 
 function getSeveralSeasons() {
     // the API has a max limit of calls per second so using a timer
-    setTimeout(function() { getGameIds(2010) }, 0);
+    setTimeout(function () { getGameIds(2010) }, 0);
     setTimeout(() => getGameIds(2011), 800);
     setTimeout(() => getGameIds(2012), 1600);
     setTimeout(() => getGameIds(2013), 2400);
@@ -51,83 +51,216 @@ function getSeveralSeasons() {
 // getSeveralSeasons();
 // turned off during testing
 
-var gameNumber=0;
+var gameNumber = 0;
 var numberGames;
 
 function shuffle() {
     gamesArray.sort();
     console.log(gamesArray);
     numberGames = gamesArray.length;
-  }
+}
 
 
- var gameDetails = [];
+var gameDetails = [];
 
 function playbyplay() {
 
-  
+
     // gamePlaying = gamesArray[gameNumber];
     // changed during testing
-    gamePlaying=gameForTesting2;
+    gamePlaying = gameForTesting2;
     gameNumber++;
     if (gameNumber > numberGames) {
-        gameNumber=0;
+        gameNumber = 0;
     }
 
     // this is the play by play api from sportradar
     $.ajax({
         method: 'GET',
         url: 'https://cors-anywhere.herokuapp.com/' +
-             'http://api.sportradar.us/nfl-ot2/games/' + gamePlaying + '/pbp.json?api_key=phdh8pn346nu68qee8pddn2f'
-      }).then(function(data) {
-        gameDetails=data;
+            'http://api.sportradar.us/nfl-ot2/games/' + gamePlaying + '/pbp.json?api_key=phdh8pn346nu68qee8pddn2f'
+    }).then(function (data) {
+        gameDetails = data;
         console.log(gameDetails);
         finalScore(gameDetails);
         ballMovement(gameDetails);
         scoringPlays(gameDetails);
         eventDetails(gameDetails);
+        isOvertime(gameDetails);
+        driveSummary(gameDetails);
     });
 
 }
 
-function ballMovement(gameDetails){
+pbpArray = [];
+pbpScoringArray = [];
+drivesArray = [];
+pbpArray.length = 0;
+pbpScoringArray.length = 0;
+drivesArray.length = 0;
+
+function ballMovement(gameDetails) {
+    console.log("ball movement function");
+    var cumulativeTime=0;
+    var totalSeconds = 0;
+    for (i = 0; i < gameDetails.periods.length; i++) {
+        for (y = 0; y < gameDetails.periods[i].pbp.length; y++)
+            // if (gameDetails.periods[i].pbp[y].event_type !=="setup") {
+            if (gameDetails.periods[i].pbp[y].type === "drive") {
+                for (z = 0; z < gameDetails.periods[i].pbp[y].events.length; z++) {
+                    // console.log("i=" + i + "y=" + y + "z=" + z);
+                    var source = gameDetails.periods[i].pbp[y].events[z];
+                    minutes= 60 * source.end_situation.clock.substring(0, source.end_situation.clock.indexOf(":"));
+                    if (minutes === 60*15) { minutes=0};
+                    minutes2= 60 * source.clock.substring(0, source.clock.indexOf(":"));
+                    seconds= parseInt(source.end_situation.clock.substring(source.end_situation.clock.indexOf(":") + 1, 3 + source.end_situation.clock.indexOf(":")));
+                    seconds2= parseInt(source.clock.substring(source.clock.indexOf(":") + 1, 3 + source.clock.indexOf(":")));
+                    totalSeconds=(minutes2 + seconds2) - (minutes + seconds);                  
+                    cumulativeTime += totalSeconds; 
+                    var add50 = 0;
+                    if (gameDetails.periods[i].pbp[y].events[z].end_situation.possession.alias ===
+                        gameDetails.periods[i].pbp[y].events[z].end_situation.location.alias) {
+                        add50 = 0;
+                    }
+                    else { add50 = 50; }
+                    pbpArray.push({
+                        driveNumber: (y+1),
+                        period: (i+1),
+                        periodType: gameDetails.periods[i].period_type,
+                        playtype: gameDetails.periods[i].pbp[y].events[z].play_type,
+                        description: gameDetails.periods[i].pbp[y].events[z].alt_description,
+                        timeleft: gameDetails.periods[i].pbp[y].events[z].end_situation.clock,
+                        duractionSecs: totalSeconds, 
+                        cumulativeTime: cumulativeTime,
+                        timeleft2: 60 * source.end_situation.clock.substring(0, source.end_situation.clock.indexOf(":")) +
+                            parseInt(source.end_situation.clock.substring(source.end_situation.clock.indexOf(":") + 1, 3 + source.end_situation.clock.indexOf(":")))
+                            + (3 - i) * 60 * 15,
+                        yardline: gameDetails.periods[i].pbp[y].events[z].end_situation.location.yardline,
+                        yardlineLoc: gameDetails.periods[i].pbp[y].events[z].end_situation.location.alias,
+                        yardline100: add50 + (50 - gameDetails.periods[i].pbp[y].events[z].end_situation.location.yardline),
+                        possession: gameDetails.periods[i].pbp[y].events[z].end_situation.possession.alias,
+                        down: gameDetails.periods[i].pbp[y].events[z].end_situation.down,
+                        home_points: gameDetails.periods[i].pbp[y].events[z].home_points,
+                        away_points: gameDetails.periods[i].pbp[y].events[z].away_points
+                    });
+
+                }
+            }
+    }
+    console.log(pbpArray);
+}
+
+
+function finalScore(gameDetails) {
+
 
 }
 
 
-function finalScore(gameDetails){
+function scoringPlays(gameDetails) {
 
+    console.log("scoring plays");
+    for (i = 0; i < pbpArray.length; i++) {
+        if (i === 0) {
+            if (pbpArray[i].home_points > 0 || pbpArray[i].away_points) {
+                pbpScoringArray.push(pbpArray[i]);
+            }
+        }
+        else {
+            if (pbpArray[i].home_points > pbpArray[i - 1].home_points || pbpArray[i].away_points > pbpArray[i - 1].away_points) {
+                pbpScoringArray.push(pbpArray[i]);
+            }
+
+        }
+
+    }
+    console.log(pbpScoringArray);
 }
 
 
-function scoringPlays(gameDetails){
+function isOvertime(gameDetails) {
 
+    console.log("did it go to overtime?");
+    if (gameDetails.periods.length > 4) {
+        console.log("This game had " + (gameDetails.periods.length - 4) + " Overtime Period(s)");
+    }
 }
 
-function eventDetails(gameDetails){
+
+function eventDetails(gameDetails) {
     // get venue, home team, visiting team, date, attendance
     attendance = gameDetails.attendance;
-    console.log( attendance );
-    date= gameDetails.scheduled;
-    console.log(date  );
-    dateFormatted= moment(date).format('l');
-    console.log(dateFormatted );
-    venue=gameDetails.summary.venue.name + " in " + gameDetails.summary.venue.city + " " + gameDetails.summary.venue.state;
-    console.log( venue );
+    console.log(attendance);
+    date = gameDetails.scheduled;
+    console.log(date);
+    dateFormatted = moment(date).format('l');
+    console.log(dateFormatted);
+    venue = gameDetails.summary.venue.name + " in " + gameDetails.summary.venue.city + " " + gameDetails.summary.venue.state;
+    console.log(venue);
     awayTeam = gameDetails.summary.away.name;
-    console.log( awayTeam );
+    console.log(awayTeam);
     awayTeamAlias = gameDetails.summary.away.alias;
-    console.log(awayTeamAlias  );
+    console.log(awayTeamAlias);
     awayTeamPoints = gameDetails.summary.away.points;
-    console.log(awayTeamPoints  );
+    console.log(awayTeamPoints);
     homeTeam = gameDetails.summary.home.name;
-    console.log( homeTeam );
+    console.log(homeTeam);
     homeTeamAlias = gameDetails.summary.home.alias;
-    console.log(homeTeamAlias  );
+    console.log(homeTeamAlias);
     homeTeamPoints = gameDetails.summary.home.points;
-    console.log(homeTeamPoints  );
+    console.log(homeTeamPoints);
     season = gameDetails.summary.season.year + " " + gameDetails.summary.season.name + " Season, Week #" + gameDetails.summary.week.title;
-    console.log( season );
-    
-    
+    console.log(season);
+
+
 }
+
+
+function driveSummary(gameDetails) {
+    console.log("ball movement function");
+    var cumulativeTime = 0;
+    for (i = 0; i < gameDetails.periods.length; i++) {
+        for (y = 0; y < gameDetails.periods[i].pbp.length; y++)
+            if (gameDetails.periods[i].pbp[y].type === "drive") {
+                var source = gameDetails.periods[i].pbp[y];
+                var z = source.events.length-1;
+                minutes = 60 * source.duration.substring(0, source.duration.indexOf(":"));
+                seconds = parseInt(source.duration.substring(source.duration.indexOf(":") + 1, 3 + source.duration.indexOf(":")));
+                totalSeconds=minutes + seconds;                  
+                cumulativeTime += totalSeconds; 
+                // console.log(z);
+                drivesArray.push({
+                    driveNumber: (y+1),
+                    period: (i+1),
+                    periodType: gameDetails.periods[i].period_type,
+                    duration: source.duration,
+                    duractionSecs: totalSeconds,
+                    cumulativeTime:cumulativeTime,
+                    end_reason: source.end_reason,
+                    first_downs: source.first_downs,
+                    gain: source.gain,
+                    play_count: source.play_count,
+                    scoring_drive: source.scoring_drive,
+                    start_reason: source.start_reason,
+                    home_points: source.events[z].home_points,
+                    away_points: source.events[z].away_points
+                });
+            }
+    }
+    console.log(drivesArray);
+}
+
+
+
+
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAROJ6HwS8af8nrj8IdAnO6txXnW89OqI0",
+    authDomain: "beattheodds-5a9ed.firebaseapp.com",
+    databaseURL: "https://beattheodds-5a9ed.firebaseio.com",
+    projectId: "beattheodds-5a9ed",
+    storageBucket: "beattheodds-5a9ed.appspot.com",
+    messagingSenderId: "1086482908213"
+};
+firebase.initializeApp(config);
