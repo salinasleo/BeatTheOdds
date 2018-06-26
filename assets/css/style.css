@@ -233,5 +233,21 @@ position: relative;
   #scoreleft {
       position: absolute;
       top: 75%;
-      left: 90%;
+      left: 85%;
   }
+
+  #submit-bet {
+        size: initial;
+        width: 200px;
+    }   
+
+    #betsubmit {
+        position: absolute;
+        top: 92%;     
+        left: 45%;     
+        cursor: pointer;     
+        background-color: Transparent;     
+        background-repeat: no-repeat;     
+        border: none;     
+        outline: none;   
+    }

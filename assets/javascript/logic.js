@@ -15,6 +15,9 @@ var intervalId;
 var currentBet = 0;
 var payout = 1;
 var multiplier = 3;
+
+var playerChips = 2500;
+
 var dataRef = firebase.database();
 var leadersDefault= [
       { user: 'BJackson',
@@ -30,6 +33,10 @@ var leadersDefault= [
 var leftTeam;
 var rightTeam;
 
+var betSelection = 0;
+
+var rightScore = 0;
+var leftScore = 0;
 //var leaderBoard= database.ref().leaders
 
 var database= firebase.database()
@@ -38,6 +45,34 @@ var twenties = 0;
 var fifties = 0;
 var hundreds = 0;
 
+$(document).ready(function(){
+
+  $('.teamleft').hide();
+  $('.teamright').hide();
+ 
+  chipHide();
+  chipUpdate();
+
+function chipUpdate(){
+  $('#chips').text(playerChips);
+}
+
+function win(){
+  playerChips = playerChips + payout;
+    chipUpdate();
+}
+
+function delay(ms) {
+  var cur_d = new Date();
+  var cur_ticks = cur_d.getTime();
+  var ms_passed = 0;
+  while(ms_passed < ms) {
+      var d = new Date();  // Possible memory leak?
+      var ticks = d.getTime();
+      ms_passed = ticks - cur_ticks;
+      // d = null;  // Prevent memory leak?
+  }
+}
 //Initialize function
 function startGame() {
     var timeLeft = 120;
@@ -45,6 +80,160 @@ function startGame() {
     run();
     $('#dall').show();
     $('#wasr').show();
+
+rightSixty();
+
+setTimeout(
+      function() 
+      {
+        leftSixty();
+        rightScore = rightScore + 7;
+        $('#scoreright').text(rightScore);
+        console.log(rightScore);
+      }, 4000);
+setTimeout(
+      function() 
+      {
+        rightFifty();
+      }, 10000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 15000);
+setTimeout(
+      function() 
+      {
+        rightFifty();
+      }, 22000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 28000);
+setTimeout(
+      function() 
+      {
+        rightFifty();
+      }, 32000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+        leftScore = leftScore = 7;
+        $('#scoreleft').text(leftScore);
+        console.log(leftScore);
+      }, 40000);
+setTimeout(
+      function() 
+      {
+        leftHundred();
+        rightScore = rightScore + 7;
+        $('#scoreright').text(rightScore);
+        console.log(rightScore);
+      }, 47000);
+setTimeout(
+      function() 
+      {
+        rightSixty();
+        leftScore = leftScore + 7;
+        $('#scoreleft').text(leftScore);
+        console.log(leftScore);
+      }, 51000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+      }, 55000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 60000);  
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 65000); 
+setTimeout(
+      function() 
+      {
+        leftTwentyFive();
+      }, 68000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 72000);    
+setTimeout(
+      function() 
+      {
+        leftTwentyFive();
+        rightScore = rightScore + 3;
+        $('#scoreright').text(rightScore);
+      }, 76000);  
+setTimeout(
+      function() 
+      {
+        rightSixty();
+      }, 79000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 82000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+      }, 85000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 88000);
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 92000);
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 97000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+        leftScore = leftScore + 7;
+        $('#scoreleft').text(leftScore);
+      }, 100000);
+setTimeout(
+      function() 
+      {
+        leftFifty();
+      }, 104000);
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 107000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 110000);
+setTimeout(
+      function() 
+      {
+        leftTwentyFive();
+      }, 115000);
+setTimeout(
+      function() 
+      {
+        stop();
+      }, 120000);
 }
 
 //Timer functions
@@ -65,6 +254,7 @@ function run(){
 function stop() {
     clearInterval(intervalId);
     chipHide();
+    $('#payout').text('0');
     $('#nameModal').modal('toggle');
 }
 //End timer functions
@@ -101,12 +291,14 @@ function chipHide() {
     $('#twentystack').hide();
     $('#fiftystack').hide();
     $('#hundredstack').hide();
+
+    $('#betsubmit').hide();
 }
 
 function rightHundred() {
   $('#footballtracker').animate({
     left: '+=100%'
-  }, 3000, function() {
+  }, 2400, function() {
     console.log('hundred yards right')
   });
   }
@@ -114,8 +306,24 @@ function rightHundred() {
 function leftHundred() {
   $('#footballtracker').animate({
     left: '-=100%'
-  }, 3000, function() {
+  }, 2400, function() {
     console.log('hundred yards left')
+  });
+  }
+
+function rightSixty() {
+  $('#footballtracker').animate({
+    left: '+=60%'
+  }, 1800, function() {
+    console.log('sixty yards right')
+  });
+  }
+
+function leftSixty() {
+  $('#footballtracker').animate({
+    left: '-=60%'
+  }, 1800, function() {
+    console.log('sixty yards left')
   });
   }
 
@@ -135,7 +343,39 @@ function leftFifty() {
   });
   }
 
-$(document).ready(function(){
+function rightFourty() {
+  $('#footballtracker').animate({
+    left: '+=40%'
+  }, 1500, function() {
+    console.log('fourty yards left')
+  });
+  }
+
+function leftFourty() {
+  $('#footballtracker').animate({
+    left: '-=40%'
+  }, 1500, function() {
+    console.log('fourty yards left')
+  });
+  }
+
+function rightTwentyFive() {
+  $('#footballtracker').animate({
+    left: '+=25%'
+  }, 1100, function() {
+    console.log('Twenty five yards right')
+  });
+  }
+
+function leftTwentyFive() {
+  $('#footballtracker').animate({
+    left: '-=25%'
+  }, 1100, function() {
+    console.log('twenty five yards left')
+  });
+  }
+
+
 
 // Setting the leader board
 
@@ -149,10 +389,19 @@ $('#footballtracker').on('click', function(){
 
     chipHide();
     
-    $('.form1').on('click', function() {
-        $('#leaderModal').modal('toggle');
-    })
-    
+$('.form1').on('click', function() {
+    betSelection = 1;
+
+  })
+
+$('.form3').on('click', function() {
+    betSelection = 2;
+
+  })
+
+$('.form2').on('click', function(){
+  $('#leaderModal').modal('toggle');
+})
 
 //Begin betting mechanics
 $('#twentychipbtn').on('click', function() {
@@ -160,6 +409,8 @@ $('#twentychipbtn').on('click', function() {
     twenties = twenties + 1;
     console.log(currentBet);
     $('#current-bet').text(currentBet);
+    playerChips = playerChips - 20;
+    chipUpdate();
     payoutMath();
 
     $('#twentychipbtn').animate({
@@ -167,6 +418,7 @@ $('#twentychipbtn').on('click', function() {
     }, 'slow', function() {twentychipbtn.style.left = 0;
       if (twenties < 2) {
                   $('#singletwenty').show();
+                  $('#betsubmit').show();
               }
               else if (twenties >= 2){
                   $('#singletwenty').hide();
@@ -179,6 +431,8 @@ $('#fiftychipbtn').on('click', function() {
     fifties = fifties + 1;
     console.log(currentBet);
     $('#current-bet').text(currentBet);
+    playerChips = playerChips - 50;
+    chipUpdate();
     payoutMath();
 
     $('#fiftychipbtn').animate({
@@ -186,6 +440,7 @@ $('#fiftychipbtn').on('click', function() {
     }, 'slow', function() {fiftychipbtn.style.left = 0;
       if (fifties < 2) {
                   $('#singlefifty').show();
+                  $('#betsubmit').show();
               }
               else if (fifties >= 2){
                   $('#singlefifty').hide();
@@ -198,6 +453,8 @@ $('#hundredchipbtn').on('click', function() {
     hundreds = hundreds + 1;
     console.log(currentBet);
     $('#current-bet').text(currentBet);
+    playerChips = playerChips - 100;
+    chipUpdate();
     payoutMath();
 
     //Animation
@@ -206,6 +463,7 @@ $('#hundredchipbtn').on('click', function() {
     }, 'slow', function() {hundredchipbtn.style.left = 0;
       if (hundreds < 2) {
                   $('#singlehundred').show();
+                  $('#betsubmit').show();
               }
               else if (hundreds >= 2){
                   $('#singlehundred').hide();
@@ -213,6 +471,13 @@ $('#hundredchipbtn').on('click', function() {
              }
         });
 })
+
+$('#betsubmit').on('click', function(){
+  stop();
+  win();
+ })
+ 
+
 
 function based(){
     database.ref().set({
