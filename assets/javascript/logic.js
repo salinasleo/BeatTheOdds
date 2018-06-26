@@ -410,12 +410,14 @@ function leftTwentyFive() {
 $('.form1').on('click', function() {
     betSelection = 'leftteam';
     $('.form1').css('background-image', 'url("' + 'assets/images/nflchosen.png' + '")');
+    $('.form3').css('background-image', 'url("' + 'assets/images/nfl2.jpg' + '")');
 
   })
 
 $('.form3').on('click', function() {
     betSelection = 'rightteam';
     $('.form3').css('background-image', 'url("' + 'assets/images/nfl2chosen.png' + '")');
+    $('.form1').css('background-image', 'url("' + 'assets/images/nfl.jpg' + '")');
 
   })
 
