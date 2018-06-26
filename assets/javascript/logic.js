@@ -53,6 +53,10 @@ $(document).ready(function(){
   chipHide();
   chipUpdate();
 
+$('.banner').on('click', function() {
+  $('#backgroundgroove').trigger('play');
+})
+
 function chipUpdate(){
   $('#chips').text(playerChips);
 }
