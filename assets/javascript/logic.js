@@ -52,6 +52,7 @@ $(document).ready(function(){
  
   chipHide();
   chipUpdate();
+  $('#footballtracker').hide();
 
 $('.banner').on('click', function() {
   $('#backgroundgroove').trigger('play');
@@ -392,12 +393,12 @@ function leftTwentyFive() {
   });
   }
 
-
-
 // Setting the leader board
 
 //based()
-$('#footballtracker').on('click', function(){
+  $('#kickoff').on('click', function(){
+  $('#kickoff').hide();
+  $('#footballtracker').show();
   startGame();
 })
 
@@ -408,11 +409,13 @@ $('#footballtracker').on('click', function(){
     
 $('.form1').on('click', function() {
     betSelection = 'leftteam';
+    $('.form1').css('background-image', 'url("' + 'assets/images/nflchosen.png' + '")');
 
   })
 
 $('.form3').on('click', function() {
     betSelection = 'rightteam';
+    $('.form3').css('background-image', 'url("' + 'assets/images/nfl2chosen.png' + '")');
 
   })
 
