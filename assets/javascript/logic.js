@@ -33,7 +33,7 @@ var leadersDefault= [
 var leftTeam;
 var rightTeam;
 
-var betSelection = 0;
+var betSelection;
 
 var rightScore = 0;
 var leftScore = 0;
@@ -58,8 +58,13 @@ function chipUpdate(){
 }
 
 function win(){
+  $('#nameModal').modal('toggle');
   playerChips = playerChips + payout;
     chipUpdate();
+}
+
+function lose(){
+  console.log('You lose!')
 }
 
 function delay(ms) {
@@ -255,7 +260,15 @@ function stop() {
     clearInterval(intervalId);
     chipHide();
     $('#payout').text('0');
-    $('#nameModal').modal('toggle');
+    if (betSelection === 'leftteam'){
+      win();
+    }
+    else if (betSelection === 'rightteam'){
+      lose();
+    }
+    else if (betSelection = 0){
+      console.log('no bet made');
+    }
 }
 //End timer functions
 
@@ -390,12 +403,12 @@ $('#footballtracker').on('click', function(){
     chipHide();
     
 $('.form1').on('click', function() {
-    betSelection = 1;
+    betSelection = 'leftteam';
 
   })
 
 $('.form3').on('click', function() {
-    betSelection = 2;
+    betSelection = 'rightteam';
 
   })
 
@@ -474,7 +487,6 @@ $('#hundredchipbtn').on('click', function() {
 
 $('#betsubmit').on('click', function(){
   stop();
-  win();
  })
  
 
