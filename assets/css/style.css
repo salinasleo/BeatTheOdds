@@ -206,3 +206,52 @@ position: relative;
     left: 58.5%;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: 189px 189px 189px 189px;
+    grid-template-rows: 520px;
+    grid-gap: 0px;
+  }
+
+  .teamleft {
+    position: absolute;
+    top: 40px;
+    left: 123px;
+  }
+
+  .teamright {
+    position: absolute;
+    top: 40px;
+
+  }
+
+  #scoreright {
+      position: absolute;
+      top: 75%;
+  }
+
+  #scoreleft {
+      position: absolute;
+      top: 75%;
+      left: 85%;
+  }
+
+  #submit-bet {
+        size: initial;
+        width: 200px;
+    }   
+
+    #betsubmit {
+        position: absolute;
+        top: 92%;     
+        left: 45%;     
+        cursor: pointer;     
+        background-color: Transparent;     
+        background-repeat: no-repeat;     
+        border: none;     
+        outline: none;   
+    }
+
+    .sounds { 
+        display: none;
+    }
