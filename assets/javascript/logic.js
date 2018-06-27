@@ -125,6 +125,7 @@ function leftTwentyFive() {
   });
   }
 
+  //variable based movement
   var directionLeft = false;
   var driveLength = 40;
   var yardage = driveLength * 7;
@@ -138,49 +139,10 @@ function leftTwentyFive() {
   }
   else if (directionLeft === false){
     $('#footballtracker').animate({ left: '+=' + yardage}, movementSpeed);
+   }
   }
-  }
 
-$(document).ready(function(){
-
-  $('.teamleft').hide();
-  $('.teamright').hide();
- 
-  chipHide();
-  chipUpdate();
-  $('#footballtracker').hide();
-
-$('.banner').on('click', function() {
-  $('#backgroundgroove').trigger('play');
-})
-
-function chipUpdate(){
-  $('#chips').text(playerChips);
-}
-
-function win(){
-  $('#nameModal').modal('toggle');
-  playerChips = playerChips + payout;
-    chipUpdate();
-}
-
-function lose(){
-  console.log('You lose!')
-}
-
-function delay(ms) {
-  var cur_d = new Date();
-  var cur_ticks = cur_d.getTime();
-  var ms_passed = 0;
-  while(ms_passed < ms) {
-      var d = new Date();  // Possible memory leak?
-      var ticks = d.getTime();
-      ms_passed = ticks - cur_ticks;
-      // d = null;  // Prevent memory leak?
-  }
-}
-//Initialize function
-function startGame() {
+  function startDemo() {
     var timeLeft = 120;
     timer();
     run();
@@ -351,6 +313,32 @@ function timer() {
       stop();
     }
   }
+function chipUpdate(){
+  $('#chips').text(playerChips);
+}
+
+function win(){
+  $('#nameModal').modal('toggle');
+  playerChips = playerChips + payout;
+    chipUpdate();
+}
+
+function lose(){
+  $('#nameModal2').modal('toggle');
+  console.log('You lose!')
+}
+
+function delay(ms) {
+  var cur_d = new Date();
+  var cur_ticks = cur_d.getTime();
+  var ms_passed = 0;
+  while(ms_passed < ms) {
+      var d = new Date();  // Possible memory leak?
+      var ticks = d.getTime();
+      ms_passed = ticks - cur_ticks;
+      // d = null;  // Prevent memory leak?
+  }
+}
 
 function run(){
     clearInterval(intervalId);
@@ -371,133 +359,148 @@ function stop() {
       console.log('no bet made');
     }
 }
-//End timer functions
 
-//Payout mechanics
 function payoutMath() {
-    payout = currentBet * multiplier;
-    $('#payout').text(payout);
+  payout = currentBet * multiplier;
+  $('#payout').text(payout);
 }
 
 function makeEaseOut(timing) {
-    return function(timeFraction) {
-      return 1 - timing(1 - timeFraction);
-    }
-  }
-
-function bounce(timeFraction) {
-    for (let a = 0, b = 1, result; 1; a += b, b /= 2) {
-      if (timeFraction >= (7 - 4 * a) / 11) {
-        return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
-    }
+  return function(timeFraction) {
+    return 1 - timing(1 - timeFraction);
   }
 }
 
-  function quad(timeFraction) {
-    return Math.pow(timeFraction, 2);
+function bounce(timeFraction) {
+  for (let a = 0, b = 1, result; 1; a += b, b /= 2) {
+    if (timeFraction >= (7 - 4 * a) / 11) {
+      return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
   }
+}
+}
+
+function quad(timeFraction) {
+  return Math.pow(timeFraction, 2);
+}
 
 function chipHide() {
-    $('#singletwenty').hide();
-    $('#singlefifty').hide();
-    $('#singlehundred').hide();
+  $('#singletwenty').hide();
+  $('#singlefifty').hide();
+  $('#singlehundred').hide();
 
-    $('#twentystack').hide();
-    $('#fiftystack').hide();
-    $('#hundredstack').hide();
+  $('#twentystack').hide();
+  $('#fiftystack').hide();
+  $('#hundredstack').hide();
 
-    $('#betsubmit').hide();
+  $('#betsubmit').hide();
 }
 
 
 function rightHundred() {
-  $('#footballtracker').animate({
-    left: '+=100%'
-  }, 2400, function() {
-    console.log('hundred yards right')
-  });
-  }
+$('#footballtracker').animate({
+  left: '+=100%'
+}, 2400, function() {
+  console.log('hundred yards right')
+});
+}
 
 function leftHundred() {
-  $('#footballtracker').animate({
-    left: '-=100%'
-  }, 2400, function() {
-    console.log('hundred yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '-=100%'
+}, 2400, function() {
+  console.log('hundred yards left')
+});
+}
 
 function rightSixty() {
-  $('#footballtracker').animate({
-    left: '+=60%'
-  }, 1800, function() {
-    console.log('sixty yards right')
-  });
-  }
+$('#footballtracker').animate({
+  left: '+=60%'
+}, 1800, function() {
+  console.log('sixty yards right')
+});
+}
 
 function leftSixty() {
-  $('#footballtracker').animate({
-    left: '-=60%'
-  }, 1800, function() {
-    console.log('sixty yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '-=60%'
+}, 1800, function() {
+  console.log('sixty yards left')
+});
+}
 
 function rightFifty() {
-  $('#footballtracker').animate({
-    left: '+=50%'
-  }, 1500, function() {
-    console.log('hundred yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '+=50%'
+}, 1500, function() {
+  console.log('hundred yards left')
+});
+}
 
 function leftFifty() {
-  $('#footballtracker').animate({
-    left: '-=50%'
-  }, 1500, function() {
-    console.log('hundred yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '-=50%'
+}, 1500, function() {
+  console.log('hundred yards left')
+});
+}
 
 function rightFourty() {
-  $('#footballtracker').animate({
-    left: '+=40%'
-  }, 1500, function() {
-    console.log('fourty yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '+=40%'
+}, 1500, function() {
+  console.log('fourty yards left')
+});
+}
 
 function leftFourty() {
-  $('#footballtracker').animate({
-    left: '-=40%'
-  }, 1500, function() {
-    console.log('fourty yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '-=40%'
+}, 1500, function() {
+  console.log('fourty yards left')
+});
+}
 
 function rightTwentyFive() {
-  $('#footballtracker').animate({
-    left: '+=25%'
-  }, 1100, function() {
-    console.log('Twenty five yards right')
-  });
-  }
+$('#footballtracker').animate({
+  left: '+=25%'
+}, 1100, function() {
+  console.log('Twenty five yards right')
+});
+}
 
 function leftTwentyFive() {
-  $('#footballtracker').animate({
-    left: '-=25%'
-  }, 1100, function() {
-    console.log('twenty five yards left')
-  });
-  }
+$('#footballtracker').animate({
+  left: '-=25%'
+}, 1100, function() {
+  console.log('twenty five yards left')
+});
+}
 
+function based(){
+  database.ref().set({
+      leaders: leadersDefault
+    });
+    database.ref().on("value", function(snapshot) {  console.log(snapshot)})
+    
+}
 
-// Setting the leader board
+$(document).ready(function(){
 
-//based()
+  $('.teamleft').hide();
+  $('.teamright').hide();
+ 
+  chipHide();
+  chipUpdate();
+  $('#footballtracker').hide();
+
+$('.banner').on('click', function() {
+  $('#backgroundgroove').trigger('play');
+})
+
   $('#kickoff').on('click', function(){
   $('#kickoff').hide();
   $('#footballtracker').show();
-  //startGame();
+  startDemo();
 
 })
 
@@ -597,13 +600,4 @@ $('#betsubmit').on('click', function(){
   stop();
  })
  
-
-
-function based(){
-    database.ref().set({
-        leaders: leadersDefault
-      });
-      database.ref().on("value", function(snapshot) {  console.log(snapshot)})
-      
-}
 });
