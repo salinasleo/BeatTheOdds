@@ -18,7 +18,7 @@ function getGameIds(year) {
         console.log(gameIds);
         parseGames(gameIds);
     });
-//f
+    //f
 }
 
 
@@ -84,10 +84,10 @@ function playbyplay() {
         console.log(gameDetails);
         finalScore(gameDetails);
         ballMovement(gameDetails);
-        scoringPlays(gameDetails);
         eventDetails(gameDetails);
         isOvertime(gameDetails);
         driveSummary(gameDetails);
+        scoringPlays(gameDetails);
     });
 
 }
@@ -180,7 +180,7 @@ function scoringPlays(gameDetails) {
 
 currentHomeScore = 0;
 currentAwayScore = 0;
-waitThis = 0;
+// waitThis = 0;
 
 function consoleScore(pbpScoringArray) {
     for (i = 0; i < pbpScoringArray.length; i++) {
@@ -188,10 +188,10 @@ function consoleScore(pbpScoringArray) {
         currentHomeScore = pbpScoringArray[i].home_points;
         currentAwayScore = pbpScoringArray[i].away_points;
         waitThis = pbpScoringArray[i].cumulativeTime;
-        adjustedTime = 1000*(120/3600)*waitThis;
+        adjustedTime = 1000 * (120 / 3600) * waitThis;
 
         if (i === 0) {
-            timedScore(0,0,0);
+            timedScore(0, 0, 0, 0);
         }
 
         for (y = 0; y <= waitThis; y++) {
@@ -257,37 +257,87 @@ function eventDetails(gameDetails) {
 function driveSummary(gameDetails) {
     console.log("ball movement function");
     var cumulativeTime = 0;
+    var i,j;
+    sequence=0;
+    Loop1:
     for (i = 0; i < gameDetails.periods.length; i++) {
-        for (y = 0; y < gameDetails.periods[i].pbp.length; y++)
-            if (gameDetails.periods[i].pbp[y].type === "drive") {
-                var source = gameDetails.periods[i].pbp[y];
-                var z = source.events.length - 1;
-                minutes = 60 * source.duration.substring(0, source.duration.indexOf(":"));
-                seconds = parseInt(source.duration.substring(source.duration.indexOf(":") + 1, 3 + source.duration.indexOf(":")));
-                totalSeconds = minutes + seconds;
-                cumulativeTime += totalSeconds;
-                // console.log(z);
-                drivesArray.push({
-                    driveNumber: (y + 1),
-                    period: (i + 1),
-                    periodType: gameDetails.periods[i].period_type,
-                    duration: source.duration,
-                    duractionSecs: totalSeconds,
-                    cumulativeTime: cumulativeTime,
-                    end_reason: source.end_reason,
-                    first_downs: source.first_downs,
-                    gain: source.gain,
-                    play_count: source.play_count,
-                    scoring_drive: source.scoring_drive,
-                    start_reason: source.start_reason,
-                    home_points: source.events[z].home_points,
-                    away_points: source.events[z].away_points
-                });
-            }
+        Loop2:
+        for (y = 0; y < gameDetails.periods[i].pbp.length; y++) {
+            if (gameDetails.periods[i].pbp[y].type !== "drive" || sequence === gameDetails.periods[i].pbp[y].sequence
+                    ) { continue Loop2; }
+            var source = gameDetails.periods[i].pbp[y];
+            var z = source.events.length - 1;
+            minutes = 60 * source.duration.substring(0, source.duration.indexOf(":"));
+            seconds = parseInt(source.duration.substring(source.duration.indexOf(":") + 1, 3 + source.duration.indexOf(":")));
+            totalSeconds = minutes + seconds;
+            // if (sequence === gameDetails.periods[i].pbp[y].sequence) { totalSeconds = 0;}
+            cumulativeTime += totalSeconds;
+            drivesArray.push({
+                driveNumber: (y + 1),
+                period: (i + 1),
+                periodType: gameDetails.periods[i].period_type,
+                duration: source.duration,
+                duractionSecs: totalSeconds,
+                cumulativeTime: cumulativeTime,
+                end_reason: source.end_reason,
+                first_downs: source.first_downs,
+                gain: source.gain,
+                play_count: source.play_count,
+                scoring_drive: source.scoring_drive,
+                start_reason: source.start_reason,
+                home_points: source.events[z].home_points,
+                away_points: source.events[z].away_points,
+                type: gameDetails.periods[i].pbp[y].type,
+                sequence: gameDetails.periods[i].pbp[y].sequence
+            });
+
+            sequence= gameDetails.periods[i].pbp[y].sequence;
+        }
     }
     console.log(drivesArray);
+    consoleDrive(drivesArray);
 }
 
+
+// function sortDrives() {
+//     drivesArray.sort(function(a, b){return a.sequence - b.sequence});
+//  for (i = 0; i < drivesArray.length; i++) {
+//      if (i>0 && drivesArray[i].sequence === drivesArray[i-1].sequence)
+//      drivesArray.splice(i, 1);
+// }
+// console.log(drivesArray);
+// }
+
+
+
+function consoleDrive(drivesArray) {
+    for (i = 0; i < drivesArray.length; i++) {
+
+        endReason = drivesArray[i].end_reason;
+        waitThis = drivesArray[i].cumulativeTime;
+        adjustedTime = 1000 * (120 / 3600) * waitThis;
+
+        if (i === 0) {
+            timedDrive("Kickoff", 0, 0);
+        }
+
+        for (y = 0; y <= waitThis; y++) {
+            if (y === waitThis) {
+                timedDrive(endReason, waitThis, adjustedTime);
+            }
+        }
+    }
+}
+
+function timedDrive(endReason, waitThis, adjustedTime) {
+    endReason = endReason;
+    setTimeout(() => updateDrive(endReason, waitThis), adjustedTime);
+}
+
+
+function updateDrive(endReason, waitThis) {
+    console.log(endReason + " at " + waitThis);
+}
 
 
 
