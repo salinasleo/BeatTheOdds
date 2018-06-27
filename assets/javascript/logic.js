@@ -138,9 +138,10 @@ function leftTwentyFive() {
   }
   else if (directionLeft === false){
     $('#footballtracker').animate({ left: '+=' + yardage}, movementSpeed);
+   }
   }
-  }
-  function startGame() {
+
+  function startDemo() {
     var timeLeft = 120;
     timer();
     run();
