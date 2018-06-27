@@ -500,7 +500,7 @@ $('.banner').on('click', function() {
   $('#kickoff').on('click', function(){
   $('#kickoff').hide();
   $('#footballtracker').show();
-  //startGame();
+  startDemo();
 
 })
 
