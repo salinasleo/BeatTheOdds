@@ -324,6 +324,7 @@ function win(){
 }
 
 function lose(){
+  $('#nameModal2').modal('toggle');
   console.log('You lose!')
 }
 
