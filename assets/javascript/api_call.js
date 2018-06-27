@@ -18,7 +18,7 @@ function getGameIds(year) {
         console.log(gameIds);
         parseGames(gameIds);
     });
-//f
+    //f
 }
 
 
@@ -68,7 +68,7 @@ function playbyplay() {
 
     // gamePlaying = gamesArray[gameNumber];
     // changed during testing
-    gamePlaying = gameForTesting2;
+    gamePlaying = gameForTesting;
     gameNumber++;
     if (gameNumber > numberGames) {
         gameNumber = 0;
@@ -84,10 +84,10 @@ function playbyplay() {
         console.log(gameDetails);
         finalScore(gameDetails);
         ballMovement(gameDetails);
-        scoringPlays(gameDetails);
         eventDetails(gameDetails);
         isOvertime(gameDetails);
         driveSummary(gameDetails);
+        scoringPlays(gameDetails);
     });
 
 }
@@ -101,7 +101,7 @@ drivesArray.length = 0;
 
 function ballMovement(gameDetails) {
     console.log("ball movement function");
-    var cumulativeTime=0;
+    var cumulativeTime = 0;
     var totalSeconds = 0;
     for (i = 0; i < gameDetails.periods.length; i++) {
         for (y = 0; y < gameDetails.periods[i].pbp.length; y++)
@@ -110,13 +110,13 @@ function ballMovement(gameDetails) {
                 for (z = 0; z < gameDetails.periods[i].pbp[y].events.length; z++) {
                     // console.log("i=" + i + "y=" + y + "z=" + z);
                     var source = gameDetails.periods[i].pbp[y].events[z];
-                    minutes= 60 * source.end_situation.clock.substring(0, source.end_situation.clock.indexOf(":"));
-                    if (minutes === 60*15) { minutes=0};
-                    minutes2= 60 * source.clock.substring(0, source.clock.indexOf(":"));
-                    seconds= parseInt(source.end_situation.clock.substring(source.end_situation.clock.indexOf(":") + 1, 3 + source.end_situation.clock.indexOf(":")));
-                    seconds2= parseInt(source.clock.substring(source.clock.indexOf(":") + 1, 3 + source.clock.indexOf(":")));
-                    totalSeconds=(minutes2 + seconds2) - (minutes + seconds);                  
-                    cumulativeTime += totalSeconds; 
+                    minutes = 60 * source.end_situation.clock.substring(0, source.end_situation.clock.indexOf(":"));
+                    if (minutes === 60 * 15) { minutes = 0 };
+                    minutes2 = 60 * source.clock.substring(0, source.clock.indexOf(":"));
+                    seconds = parseInt(source.end_situation.clock.substring(source.end_situation.clock.indexOf(":") + 1, 3 + source.end_situation.clock.indexOf(":")));
+                    seconds2 = parseInt(source.clock.substring(source.clock.indexOf(":") + 1, 3 + source.clock.indexOf(":")));
+                    totalSeconds = (minutes2 + seconds2) - (minutes + seconds);
+                    cumulativeTime += totalSeconds;
                     var add50 = 0;
                     if (gameDetails.periods[i].pbp[y].events[z].end_situation.possession.alias ===
                         gameDetails.periods[i].pbp[y].events[z].end_situation.location.alias) {
@@ -124,13 +124,13 @@ function ballMovement(gameDetails) {
                     }
                     else { add50 = 50; }
                     pbpArray.push({
-                        driveNumber: (y+1),
-                        period: (i+1),
+                        driveNumber: (y + 1),
+                        period: (i + 1),
                         periodType: gameDetails.periods[i].period_type,
                         playtype: gameDetails.periods[i].pbp[y].events[z].play_type,
                         description: gameDetails.periods[i].pbp[y].events[z].alt_description,
                         timeleft: gameDetails.periods[i].pbp[y].events[z].end_situation.clock,
-                        duractionSecs: totalSeconds, 
+                        duractionSecs: totalSeconds,
                         cumulativeTime: cumulativeTime,
                         timeleft2: 60 * source.end_situation.clock.substring(0, source.end_situation.clock.indexOf(":")) +
                             parseInt(source.end_situation.clock.substring(source.end_situation.clock.indexOf(":") + 1, 3 + source.end_situation.clock.indexOf(":")))
@@ -175,6 +175,44 @@ function scoringPlays(gameDetails) {
 
     }
     console.log(pbpScoringArray);
+    consoleScore(pbpScoringArray);
+}
+
+currentHomeScore = 0;
+currentAwayScore = 0;
+// waitThis = 0;
+
+function consoleScore(pbpScoringArray) {
+    for (i = 0; i < pbpScoringArray.length; i++) {
+
+        currentHomeScore = pbpScoringArray[i].home_points;
+        currentAwayScore = pbpScoringArray[i].away_points;
+        waitThis = pbpScoringArray[i].cumulativeTime;
+        adjustedTime = 1000 * (120 / 3600) * waitThis;
+
+        if (i === 0) {
+            timedScore(0, 0, 0, 0);
+        }
+
+        for (y = 0; y <= waitThis; y++) {
+            if (y === waitThis) {
+                timedScore(currentHomeScore, currentAwayScore, waitThis, adjustedTime);
+            }
+        }
+    }
+}
+
+function timedScore(currentHomeScore, currentAwayScore, waitThis, adjustedTime) {
+    currentHomeScore = currentHomeScore;
+    currentAwayScore = currentAwayScore;
+    setTimeout(() => updateScores(currentHomeScore, currentAwayScore, waitThis), adjustedTime);
+}
+
+
+function updateScores(currentHomeScore, currentAwayScore, waitThis) {
+    console.log("Home Team Score is: " + currentHomeScore);
+    console.log("Away Team Score is: " + currentAwayScore);
+    console.log("Time elapsed is " + waitThis);
 }
 
 
@@ -219,37 +257,87 @@ function eventDetails(gameDetails) {
 function driveSummary(gameDetails) {
     console.log("ball movement function");
     var cumulativeTime = 0;
+    var i,j;
+    sequence=0;
+    Loop1:
     for (i = 0; i < gameDetails.periods.length; i++) {
-        for (y = 0; y < gameDetails.periods[i].pbp.length; y++)
-            if (gameDetails.periods[i].pbp[y].type === "drive") {
-                var source = gameDetails.periods[i].pbp[y];
-                var z = source.events.length-1;
-                minutes = 60 * source.duration.substring(0, source.duration.indexOf(":"));
-                seconds = parseInt(source.duration.substring(source.duration.indexOf(":") + 1, 3 + source.duration.indexOf(":")));
-                totalSeconds=minutes + seconds;                  
-                cumulativeTime += totalSeconds; 
-                // console.log(z);
-                drivesArray.push({
-                    driveNumber: (y+1),
-                    period: (i+1),
-                    periodType: gameDetails.periods[i].period_type,
-                    duration: source.duration,
-                    duractionSecs: totalSeconds,
-                    cumulativeTime:cumulativeTime,
-                    end_reason: source.end_reason,
-                    first_downs: source.first_downs,
-                    gain: source.gain,
-                    play_count: source.play_count,
-                    scoring_drive: source.scoring_drive,
-                    start_reason: source.start_reason,
-                    home_points: source.events[z].home_points,
-                    away_points: source.events[z].away_points
-                });
-            }
+        Loop2:
+        for (y = 0; y < gameDetails.periods[i].pbp.length; y++) {
+            if (gameDetails.periods[i].pbp[y].type !== "drive" || sequence === gameDetails.periods[i].pbp[y].sequence
+                    ) { continue Loop2; }
+            var source = gameDetails.periods[i].pbp[y];
+            var z = source.events.length - 1;
+            minutes = 60 * source.duration.substring(0, source.duration.indexOf(":"));
+            seconds = parseInt(source.duration.substring(source.duration.indexOf(":") + 1, 3 + source.duration.indexOf(":")));
+            totalSeconds = minutes + seconds;
+            // if (sequence === gameDetails.periods[i].pbp[y].sequence) { totalSeconds = 0;}
+            cumulativeTime += totalSeconds;
+            drivesArray.push({
+                driveNumber: (y + 1),
+                period: (i + 1),
+                periodType: gameDetails.periods[i].period_type,
+                duration: source.duration,
+                duractionSecs: totalSeconds,
+                cumulativeTime: cumulativeTime,
+                end_reason: source.end_reason,
+                first_downs: source.first_downs,
+                gain: source.gain,
+                play_count: source.play_count,
+                scoring_drive: source.scoring_drive,
+                start_reason: source.start_reason,
+                home_points: source.events[z].home_points,
+                away_points: source.events[z].away_points,
+                type: gameDetails.periods[i].pbp[y].type,
+                sequence: gameDetails.periods[i].pbp[y].sequence
+            });
+
+            sequence= gameDetails.periods[i].pbp[y].sequence;
+        }
     }
     console.log(drivesArray);
+    consoleDrive(drivesArray);
 }
 
+
+// function sortDrives() {
+//     drivesArray.sort(function(a, b){return a.sequence - b.sequence});
+//  for (i = 0; i < drivesArray.length; i++) {
+//      if (i>0 && drivesArray[i].sequence === drivesArray[i-1].sequence)
+//      drivesArray.splice(i, 1);
+// }
+// console.log(drivesArray);
+// }
+
+
+
+function consoleDrive(drivesArray) {
+    for (i = 0; i < drivesArray.length; i++) {
+
+        endReason = drivesArray[i].end_reason;
+        waitThis = drivesArray[i].cumulativeTime;
+        adjustedTime = 1000 * (120 / 3600) * waitThis;
+
+        if (i === 0) {
+            timedDrive("Kickoff", 0, 0);
+        }
+
+        for (y = 0; y <= waitThis; y++) {
+            if (y === waitThis) {
+                timedDrive(endReason, waitThis, adjustedTime);
+            }
+        }
+    }
+}
+
+function timedDrive(endReason, waitThis, adjustedTime) {
+    endReason = endReason;
+    setTimeout(() => updateDrive(endReason, waitThis), adjustedTime);
+}
+
+
+function updateDrive(endReason, waitThis) {
+    console.log(endReason + " at " + waitThis);
+}
 
 
 
