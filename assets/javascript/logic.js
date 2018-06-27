@@ -125,6 +125,7 @@ function leftTwentyFive() {
   });
   }
 
+  //variable based movement
   var directionLeft = false;
   var driveLength = 40;
   var yardage = driveLength * 7;
