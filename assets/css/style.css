@@ -1,260 +1,3 @@
-body {
-    background-image: url('../../assets/images/background1.jpg');
-    background-size: cover;
-    margin-top: 35px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.banner{
-    background-image: url('../../assets/images/football.jpg');
-    background-size: cover;
-    height:150px;    
-    width: 100%;
-    border-top: 5px;
-    border-top-color: white;
-    border-top-style: solid;
-    border-left: 5px;
-    border-left: white;
-    border-left-style: solid;
-    border-right: 5px;
-    border-right-color: white;
-    border-right-style: solid;
-    border-bottom: 5px;
-    border-bottom: white;
-    border-bottom-style: solid;
-}
-
-.form1, .form2, .form3 {
-    height: 200px;
-}
-
-.form1{
-    background-image: url('../../assets/images/nfl.jpg');
-    background-size: cover;
-    border-left: 5px;
-    border-left: white;
-    border-left-style: solid;
-    
-}
-
-.form2 {
-    background-image: url('../../assets/images/tv2.jpg');
-    background-size: cover;
-    border-left: 5px;
-    border-left: white;
-    border-left-style: solid;
-    border-right: 5px;
-    border-right-color: white;
-    border-right-style: solid;
-}
-
-.form3{
-    background-image: url('../../assets/images/nfl2.jpg');
-    background-size: cover;
-    border-right: 5px;
-    border-right-color: white;
-    border-right-style: solid;
-}
-
-.form2 {
-    background-color: darkgrey;
-}
-
-.liveInput, .liveOdds {
-    height: 260px;
-    border-left: 5px;
-    border-left: white;
-    border-left-style: solid;
-    border-right: 5px;
-    border-right-color: white;
-    border-right-style: solid;
-}
-
-.liveInput {
-    background-image: url('../../assets/images/fieldupper.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.liveOdds {
-    background-image: url('../../assets/images/fieldlower.png');
-    border-bottom: 5px;
-    border-bottom: white;
-    border-bottom-style: solid;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.field {
-    background-color: white;
-    height: 520px;
-    border-left: 5px;
-    border-left: white;
-    border-left-style: solid;
-    border-right: 5px;
-    border-right-color: white;
-    border-right-style: solid;
-    border-top: 5px;
-    border-top-color: white;
-    border-top-style: solid;
-    background-image: url('../../assets/images/touchdown.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.footer {
-    height:150px;
-}
-
-h1, h3 {
-    font-family: 'Permanent Marker', cursive;
-    color: white;
-}
-
-h5 {
-    font-family: 'Rajdhani', sans-serif;
-    color: white;
-}
-
-.betting, #betting {
-    height: 520px;
-    background-image: url('../../assets/images/feltbackground2.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-left: 5px;
-    border-left: white;
-    border-left-style: solid;
-    border-bottom: 5px;
-    border-bottom: white;
-    border-bottom-style: solid;
-    border-top: 5px;
-    border-top: white;
-    border-top-style: solid;
-    align-content: left;
-    position: relative;
-}
-
-#chip {
-    position: relative;
-    cursor: pointer;
-}
-
-.chipbtn {
-    background-color: Transparent;
-    background-repeat: no-repeat;
-    border: none;
-    outline: none;
-}
-
-#twentychipbtn {
-position: relative;
-    cursor: pointer;
-}
-#fiftychipbtn {
-    position: relative;
-        cursor: pointer;
-    }
-#hundredchipbtn {
-position: relative;
-    cursor: pointer;
-}
-
-#footballtracker {
-    position: relative;
-      cursor: pointer;
-}
-
-#modal-background {
-    background: none;
-}
-
-#leaderboardmodal {
-    background: url('../../assets/images/black_paper.png');
-    height: 500px;
-    width: 500px;
-    border: solid white 7px;
-    margin-top: 100px;
-}
-
-#singletwenty {
-    position: absolute;
-    left: 58.5%;
-}
-
-#singlefifty {
-    position: absolute;
-    left: 58.5%;
-}
-
-#singlehundred {
-    position: absolute;
-    left: 58.5%;
-}
-#twentystack {
-    position: absolute;
-    left: 58.5%;
-}
-
-#fiftystack {
-    position: absolute;
-    left: 58.5%;
-}
-
-#hundredstack {
-    position: absolute;
-    left: 58.5%;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: 189px 189px 189px 189px;
-    grid-template-rows: 520px;
-    grid-gap: 0px;
-  }
-
-  .teamleft {
-    position: absolute;
-    top: 40px;
-    left: 123px;
-  }
-
-  .teamright {
-    position: absolute;
-    top: 40px;
-
-  }
-
-  #scoreright {
-      position: absolute;
-      top: 75%;
-  }
-
-  #scoreleft {
-      position: absolute;
-      top: 75%;
-      left: 85%;
-  }
-
-  #submit-bet {
-        size: initial;
-        width: 200px;
-    }   
-
-    #betsubmit {
-        position: absolute;
-        top: 92%;     
-        left: 45%;     
-        cursor: pointer;     
-        background-color: Transparent;     
-        background-repeat: no-repeat;     
-        border: none;     
-        outline: none;   
-    }
-
-    .sounds { 
-        display: none;
-    }
 
     body {
         margin-top: 55px;
@@ -359,3 +102,261 @@ position: relative;
         font-family: 'Permanent Marker', cursive;
         color:white;
     }
+    body {
+        background-image: url('../../assets/images/background1.jpg');
+        background-size: cover;
+        margin-top: 35px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .banner{
+        background-image: url('../../assets/images/football.jpg');
+        background-size: cover;
+        height:150px;    
+        width: 100%;
+        border-top: 5px;
+        border-top-color: white;
+        border-top-style: solid;
+        border-left: 5px;
+        border-left: white;
+        border-left-style: solid;
+        border-right: 5px;
+        border-right-color: white;
+        border-right-style: solid;
+        border-bottom: 5px;
+        border-bottom: white;
+        border-bottom-style: solid;
+    }
+    
+    .form1, .form2, .form3 {
+        height: 200px;
+    }
+    
+    .form1{
+        background-image: url('../../assets/images/nfl.jpg');
+        background-size: cover;
+        border-left: 5px;
+        border-left: white;
+        border-left-style: solid;
+        
+    }
+    
+    .form2 {
+        background-image: url('../../assets/images/tv2.jpg');
+        background-size: cover;
+        border-left: 5px;
+        border-left: white;
+        border-left-style: solid;
+        border-right: 5px;
+        border-right-color: white;
+        border-right-style: solid;
+    }
+    
+    .form3{
+        background-image: url('../../assets/images/nfl2.jpg');
+        background-size: cover;
+        border-right: 5px;
+        border-right-color: white;
+        border-right-style: solid;
+    }
+    
+    .form2 {
+        background-color: darkgrey;
+    }
+    
+    .liveInput, .liveOdds {
+        height: 260px;
+        border-left: 5px;
+        border-left: white;
+        border-left-style: solid;
+        border-right: 5px;
+        border-right-color: white;
+        border-right-style: solid;
+    }
+    
+    .liveInput {
+        background-image: url('../../assets/images/fieldupper.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .liveOdds {
+        background-image: url('../../assets/images/fieldlower.png');
+        border-bottom: 5px;
+        border-bottom: white;
+        border-bottom-style: solid;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    .field {
+        background-color: white;
+        height: 520px;
+        border-left: 5px;
+        border-left: white;
+        border-left-style: solid;
+        border-right: 5px;
+        border-right-color: white;
+        border-right-style: solid;
+        border-top: 5px;
+        border-top-color: white;
+        border-top-style: solid;
+        background-image: url('../../assets/images/touchdown.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    .footer {
+        height:150px;
+    }
+    
+    h1, h3 {
+        font-family: 'Permanent Marker', cursive;
+        color: white;
+    }
+    
+    h5 {
+        font-family: 'Rajdhani', sans-serif;
+        color: white;
+    }
+    
+    .betting, #betting {
+        height: 520px;
+        background-image: url('../../assets/images/feltbackground2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-left: 5px;
+        border-left: white;
+        border-left-style: solid;
+        border-bottom: 5px;
+        border-bottom: white;
+        border-bottom-style: solid;
+        border-top: 5px;
+        border-top: white;
+        border-top-style: solid;
+        align-content: left;
+        position: relative;
+    }
+    
+    #chip {
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .chipbtn {
+        background-color: Transparent;
+        background-repeat: no-repeat;
+        border: none;
+        outline: none;
+    }
+    
+    #twentychipbtn {
+    position: relative;
+        cursor: pointer;
+    }
+    #fiftychipbtn {
+        position: relative;
+            cursor: pointer;
+        }
+    #hundredchipbtn {
+    position: relative;
+        cursor: pointer;
+    }
+    
+    #footballtracker {
+        position: relative;
+          cursor: pointer;
+    }
+    
+    #modal-background {
+        background: none;
+    }
+    
+    #leaderboardmodal {
+        background: url('../../assets/images/black_paper.png');
+        height: 500px;
+        width: 500px;
+        border: solid white 7px;
+        margin-top: 100px;
+    }
+    
+    #singletwenty {
+        position: absolute;
+        left: 58.5%;
+    }
+    
+    #singlefifty {
+        position: absolute;
+        left: 58.5%;
+    }
+    
+    #singlehundred {
+        position: absolute;
+        left: 58.5%;
+    }
+    #twentystack {
+        position: absolute;
+        left: 58.5%;
+    }
+    
+    #fiftystack {
+        position: absolute;
+        left: 58.5%;
+    }
+    
+    #hundredstack {
+        position: absolute;
+        left: 58.5%;
+    }
+    
+    .grid {
+        display: grid;
+        grid-template-columns: 189px 189px 189px 189px;
+        grid-template-rows: 520px;
+        grid-gap: 0px;
+      }
+    
+      .teamleft {
+        position: absolute;
+        top: 40px;
+        left: 123px;
+      }
+    
+      .teamright {
+        position: absolute;
+        top: 40px;
+    
+      }
+    
+      #scoreright {
+          position: absolute;
+          top: 75%;
+      }
+    
+      #scoreleft {
+          position: absolute;
+          top: 75%;
+          left: 85%;
+      }
+    
+      #submit-bet {
+            size: initial;
+            width: 200px;
+        }   
+    
+        #betsubmit {
+            position: absolute;
+            top: 92%;     
+            left: 45%;     
+            cursor: pointer;     
+            background-color: Transparent;     
+            background-repeat: no-repeat;     
+            border: none;     
+            outline: none;   
+        }
+    
+        .sounds { 
+            display: none;
+        }
+    
