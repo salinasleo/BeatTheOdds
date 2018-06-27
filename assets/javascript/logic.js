@@ -410,6 +410,87 @@ function chipHide() {
 }
 
 
+function rightHundred() {
+  $('#footballtracker').animate({
+    left: '+=100%'
+  }, 2400, function() {
+    console.log('hundred yards right')
+  });
+  }
+
+function leftHundred() {
+  $('#footballtracker').animate({
+    left: '-=100%'
+  }, 2400, function() {
+    console.log('hundred yards left')
+  });
+  }
+
+function rightSixty() {
+  $('#footballtracker').animate({
+    left: '+=60%'
+  }, 1800, function() {
+    console.log('sixty yards right')
+  });
+  }
+
+function leftSixty() {
+  $('#footballtracker').animate({
+    left: '-=60%'
+  }, 1800, function() {
+    console.log('sixty yards left')
+  });
+  }
+
+function rightFifty() {
+  $('#footballtracker').animate({
+    left: '+=50%'
+  }, 1500, function() {
+    console.log('hundred yards left')
+  });
+  }
+
+function leftFifty() {
+  $('#footballtracker').animate({
+    left: '-=50%'
+  }, 1500, function() {
+    console.log('hundred yards left')
+  });
+  }
+
+function rightFourty() {
+  $('#footballtracker').animate({
+    left: '+=40%'
+  }, 1500, function() {
+    console.log('fourty yards left')
+  });
+  }
+
+function leftFourty() {
+  $('#footballtracker').animate({
+    left: '-=40%'
+  }, 1500, function() {
+    console.log('fourty yards left')
+  });
+  }
+
+function rightTwentyFive() {
+  $('#footballtracker').animate({
+    left: '+=25%'
+  }, 1100, function() {
+    console.log('Twenty five yards right')
+  });
+  }
+
+function leftTwentyFive() {
+  $('#footballtracker').animate({
+    left: '-=25%'
+  }, 1100, function() {
+    console.log('twenty five yards left')
+  });
+  }
+
+
 // Setting the leader board
 
 //based()
@@ -417,6 +498,7 @@ function chipHide() {
   $('#kickoff').hide();
   $('#footballtracker').show();
   //startGame();
+
 })
 
   $('.teamleft').hide();
