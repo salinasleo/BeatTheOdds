@@ -1,0 +1,103 @@
+body {
+    margin-top: 55px;
+    background: url('../../assets/images/background.png');
+    background-size: cover;    
+    background-repeat: no-repeat;
+}
+
+.player1 {
+    height: 150px;
+    background: url('../../assets/images/seat.png');
+    background-size: cover;   
+    background-repeat: no-repeat;
+}
+
+.player2 {
+    height: 150px;
+    background: url('../../assets/images/seat.png');
+    background-size: cover;   
+    background-repeat: no-repeat;
+}
+
+.banner {
+    height: 150px;
+    background: url('../../assets/images/banner3.jpg');
+    background-size: cover;   
+    background-repeat: no-repeat;
+}
+
+.p1choiceimg {
+    background: url("../../assets/images/defaultchoice.png");
+    background-size: cover;
+    height: 300px;
+}
+
+.p1name {
+    background: url('../../assets/images/marble.jpg');
+    background-size: cover;    
+    background-repeat: no-repeat;
+    height: 50px;
+}
+
+.p2choiceimg {
+    background: url("../../assets/images/defaultchoice.png");
+    background-size: cover;
+    height: 300px;
+}
+
+.p2name {
+    background: url('../../assets/images/marble.jpg');
+    background-size: cover;    
+    background-repeat: no-repeat;
+    height: 50px;
+}
+
+.battlefield {
+    height: 352px;
+    background: url('../../assets/images/battlefieldbackground.jpg');
+    background-size: cover;   
+    background-repeat: no-repeat;
+}
+
+.waterBtn {
+    background: url('../../assets/images/water.jpg');
+    background-size: cover;    
+    background-repeat: no-repeat;
+    height: 150px;
+}
+
+.earthBtn {
+    background: url('../../assets/images/earth.jpg');
+    background-size: cover;    
+    background-repeat: no-repeat;
+    height: 150px;
+}
+
+.fireBtn {
+    background: url('../../assets/images/fire.jpg');
+    background-size: cover;    
+    background-repeat: no-repeat;
+    height: 150px;
+}
+
+.score {
+    background: url('../../assets/images/marble.jpg');
+    background-size: cover;    
+    background-repeat: no-repeat;
+    height: 105px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Permanent Marker', cursive;
+}
+
+#player1name, #player2name {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.fakeh, .fakeh1, .fakeh2, .fakehn1, .fakehn2 {
+    font-family: 'Permanent Marker', cursive;
+    color:white;
+}
