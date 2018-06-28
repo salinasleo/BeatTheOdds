@@ -83,9 +83,10 @@ function leaderDisp(){
     $("ol").append("<li>"+leadersSorted[i].user+"  -   "+leadersSorted[i].score+"chips </li>")
 }
 }
-$(document).ready(function(){
-    sort().then(leaderDisp())
-    });
+// $(document).ready(function(){
+//     sort();
+
+//     });
 
 
 
@@ -128,6 +129,8 @@ var hundreds = 0;
 
 
   function startDemo() {
+    sort();
+    leaderDisp();
     timer2();
     run();
     $('#dall').show();
