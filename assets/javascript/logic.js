@@ -86,8 +86,8 @@ setTimeout(
 function startGame() {
     timer2();
     run();
-    $('#dall').show();
-    $('#wasr').show();
+    $('#atll').show();
+    $('#oakr').show();
     // $('#'+ homeTeamAlias + 'l').show();
     // $('#'+ awayTeamAlias + 'l').show();
     animateWithData();
