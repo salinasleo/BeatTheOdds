@@ -112,6 +112,22 @@ h1, h3 {
     color: white;
 }
 
+#DriveResultHome {
+    font-family: 'Permanent Marker', cursive;
+    color: yellow;
+    position: absolute;
+      top: 20%;
+      right: 20%;
+}
+
+#DriveResultAway {
+    font-family: 'Permanent Marker', cursive;
+    color: yellow;
+    position: absolute;
+      top: 20%;
+      right: 60%;
+}
+
 h5 {
     font-family: 'Rajdhani', sans-serif;
     color: white;
@@ -227,13 +243,15 @@ position: relative;
 
   #scoreright {
       position: absolute;
-      top: 75%;
+      top: 70%;
+      font-weight: bold;
   }
 
   #scoreleft {
       position: absolute;
-      top: 75%;
-      left: 85%;
+      top: 70%;
+      right: 4%;
+      font-weight: bold;
   }
 
   #submit-bet {

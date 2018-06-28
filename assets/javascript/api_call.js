@@ -1,6 +1,13 @@
 
 gameForTesting = "35c8c305-f698-472a-809d-4b787497be93";
 gameForTesting2 = "441885c0-9482-410e-8ac3-7473052f34bd";
+gameForTesting3 = "0651e14f-55b0-403f-9ff0-d0f11261490d";
+gameForTesting4 = "9a38d9e9-aa16-4865-bac8-68854f978513";
+gameForTesting5 = "37796d82-3be5-4084-83c6-4cf4b2361191";
+gameForTesting6 = "9e39ac0c-a4b6-4b7c-92eb-6c502842c49d";
+gameForTesting7 = "f242f82a-0cc0-47e6-915f-fb2857072cea";
+
+
 
 
 function getGameIds(year) {
