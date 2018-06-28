@@ -18,18 +18,7 @@ var multiplier = 3;
 
 var playerChips = 2500;
 
-var dataRef = firebase.database();
-var leadersDefault= [
-      { user: 'BJackson',
-        score: 501,
-    },
-      { user: 'SYoung',
-      score: 502,
-    },
-      { user: 'JMontana',
-      score: 503,
-  }
-  ]
+
 var leftTeam;
 var rightTeam;
 
@@ -37,9 +26,69 @@ var betSelection;
 
 var rightScore = 0;
 var leftScore = 0;
-//var leaderBoard= database.ref().leaders
+
+// Leaderboard stuff
+var leadersDefault= [
+{ user: 'TBrady',
+score: 30265,
+},
+{ user: 'TRomo',
+score: 29854,
+},
+{ user: 'TOwens',
+score: 23569,
+},
+{ user: 'EManning',
+score: 27596,
+},
+{ user: 'BJackson',
+score: 19856,
+},
+{ user: 'BFavre',
+score: 31503,
+},
+{ user: 'DBryant',
+score: 17000,
+},
+{ user: 'PManning',
+score: 32460,
+},
+{ user: 'OBeckham',
+score: 25689,
+},
+{ user: 'ARogers',
+score: 34560,
+},
+]
+
+var leadersSorted = [];
+
 
 var database= firebase.database()
+
+function sort(){database.ref('/leaders').on("value", function(childSnapshot) {
+    console.log( childSnapshot.val());
+    var test= childSnapshot.val();
+    var leadersSorted = test.sort(function (a, b) {
+        return b.score-a.score
+    });
+    leadersSorted.length =10;
+    console.log(leadersSorted);
+
+})
+}
+function leaderDisp(){
+   
+   for (i=0; i < leadersSorted.length; i++){
+    $("ol").append("<li>"+leadersSorted[i].user+"  -   "+leadersSorted[i].score+"chips </li>")
+}
+}
+$(document).ready(function(){
+    sort().then(leaderDisp())
+    });
+
+
+
 
 var twenties = 0;
 var fifties = 0;
@@ -216,12 +265,6 @@ function disableButtons() {
 
 
 
-function based(){
-  database.ref().set({
-      leaders: leadersDefault
-    });
-    database.ref().on("value", function(snapshot) {  console.log(snapshot)})
-}
 
 $(document).ready(function(){
 
