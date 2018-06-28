@@ -512,7 +512,7 @@ $(document).ready(function () {
     $('#kickoff').on('click', function () {
         $('#kickoff').hide();
         $('#footballtracker').show();
-        startGame();
+        startDemo();
 
     })
 
@@ -612,7 +612,7 @@ $(document).ready(function () {
     })
 
     $('#betsubmit').on('click', function () {
-        //   stop();
+        stop();
         // add some functionality here other than stop
         // ******************************************
         $('#current-bet').text("");
@@ -967,7 +967,7 @@ function consoleDrive(drivesArray) {
         whoDrives = drivesArray[i].possession;
         period = drivesArray[i].period;
 
-        if (whoDrives === homeTeamAlias && (period === 1 || period === 3)) {
+        if (whoDrives === homeTeamAlias){ //&& (period === 1 || period === 3)) {
             directionLeft = true;
         }
         else { directionLeft = false; }
