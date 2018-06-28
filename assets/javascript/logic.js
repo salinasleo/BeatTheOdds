@@ -105,6 +105,7 @@ function timer() {
 
 var numerator;
 var denominator;
+var multiplier;
 
 function timer2() {
     timeLeft--;
@@ -131,19 +132,23 @@ function timer2() {
     adjustment = 3 * (120-timeLeft)/120;
     // this adjustment will increase multiplier as time elapses capped at 3x
     if (parseInt(denominator.innerHTML) === 0 || parseInt(numerator.innerHTML) === parseInt(denominator.innerHTML)) {
+        if (stopMultiplier !== 1){
         multiplier = 1;
+        }
     }
     else {
+        if (stopMultiplier !== 1) {
         multiplier = parseInt(numerator.innerHTML) - parseInt(denominator.innerHTML);
         multiplier *= adjustment;
         if (multiplier < 0) {
             multiplier = -1/multiplier;
-        } 
+        } }
     }
     // multiplier update
+    if (stopMultiplier !== 1) {
     $("#multiplier").html("");
     $("#multiplier").html("Multiplier: " + multiplier.toFixed(2));
-
+    }
 }
 
 function chipUpdate() {
@@ -195,7 +200,7 @@ function stop() {
 
 function payoutMath() {
     payout = currentBet * multiplier;
-    $('#payout').text(payout);
+    $('#payout').text(payout.toFixed(2));
 }
 
 function makeEaseOut(timing) {
@@ -297,7 +302,7 @@ $(document).ready(function () {
         currentBet = currentBet + 20;
         twenties = twenties + 1;
         console.log(currentBet);
-        $('#current-bet').text(currentBet);
+        $('#current-bet').text("Current Bet: " + currentBet);
         playerChips = playerChips - 20;
         chipUpdate();
         payoutMath();
@@ -320,7 +325,7 @@ $(document).ready(function () {
         currentBet = currentBet + 50;
         fifties = fifties + 1;
         console.log(currentBet);
-        $('#current-bet').text(currentBet);
+        $('#current-bet').text("Current Bet: " + currentBet);
         playerChips = playerChips - 50;
         chipUpdate();
         payoutMath();
@@ -343,7 +348,7 @@ $(document).ready(function () {
         currentBet = currentBet + 100;
         hundreds = hundreds + 1;
         console.log(currentBet);
-        $('#current-bet').text(currentBet);
+        $('#current-bet').text("Current Bet: " + currentBet);
         playerChips = playerChips - 100;
         chipUpdate();
         payoutMath();
@@ -368,13 +373,16 @@ $(document).ready(function () {
         //   stop();
         // add some functionality here other than stop
         // ******************************************
+        $('#current-bet').text("");
         $('#current-bet').text("Your bet was " + currentBet);
+        stopMultiplier=1;
+        $('#multiplier').text("Your Multiplier was " + multiplier.toFixed(2));
         disableButtons();
     })
 
 });
 
-
+var stopMultiplier=0;
 
 // API type functions 
 
