@@ -83,7 +83,7 @@ setTimeout(
 
 
 
-function startDemo() {
+function startGame() {
     timer2();
     run();
     $('#dall').show();
@@ -91,6 +91,168 @@ function startDemo() {
     // $('#'+ homeTeamAlias + 'l').show();
     // $('#'+ awayTeamAlias + 'l').show();
     animateWithData();
+}
+
+function startDemo() {
+    var timeLeft = 120;
+    timer();
+    run();
+    $('#dall').show();
+    $('#wasr').show();
+
+rightSixty();
+
+setTimeout(
+      function() 
+      {
+        leftSixty();
+        rightScore = rightScore + 7;
+        $('#scoreright').text(rightScore);
+        console.log(rightScore);
+      }, 4000);
+setTimeout(
+      function() 
+      {
+        rightFifty();
+      }, 10000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 15000);
+setTimeout(
+      function() 
+      {
+        rightFifty();
+      }, 22000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 28000);
+setTimeout(
+      function() 
+      {
+        rightFifty();
+      }, 32000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+        leftScore = leftScore = 7;
+        $('#scoreleft').text(leftScore);
+        console.log(leftScore);
+      }, 40000);
+setTimeout(
+      function() 
+      {
+        leftHundred();
+        rightScore = rightScore + 7;
+        $('#scoreright').text(rightScore);
+        console.log(rightScore);
+      }, 47000);
+setTimeout(
+      function() 
+      {
+        rightSixty();
+        leftScore = leftScore + 7;
+        $('#scoreleft').text(leftScore);
+        console.log(leftScore);
+      }, 51000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+      }, 55000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 60000);  
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 65000); 
+setTimeout(
+      function() 
+      {
+        leftTwentyFive();
+      }, 68000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 72000);    
+setTimeout(
+      function() 
+      {
+        leftTwentyFive();
+        rightScore = rightScore + 3;
+        $('#scoreright').text(rightScore);
+      }, 76000);  
+setTimeout(
+      function() 
+      {
+        rightSixty();
+      }, 79000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 82000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+      }, 85000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 88000);
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 92000);
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 97000);
+setTimeout(
+      function() 
+      {
+        rightTwentyFive();
+        leftScore = leftScore + 7;
+        $('#scoreleft').text(leftScore);
+      }, 100000);
+setTimeout(
+      function() 
+      {
+        leftFifty();
+      }, 104000);
+setTimeout(
+      function() 
+      {
+        rightFourty();
+      }, 107000);
+setTimeout(
+      function() 
+      {
+        leftFourty();
+      }, 110000);
+setTimeout(
+      function() 
+      {
+        leftTwentyFive();
+      }, 115000);
+setTimeout(
+      function() 
+      {
+        stop();
+      }, 120000);
 }
 
 //Timer functions
@@ -270,7 +432,7 @@ $(document).ready(function () {
     $('#kickoff').on('click', function () {
         $('#kickoff').hide();
         $('#footballtracker').show();
-        startDemo();
+        startGame();
 
     })
 
