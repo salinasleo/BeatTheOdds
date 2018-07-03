@@ -86,10 +86,10 @@ setTimeout(
 function startDemo() {
     timer2();
     run();
-    $('#dall').show();
-    $('#wasr').show();
-    // $('#'+ homeTeamAlias + 'l').show();
-    // $('#'+ awayTeamAlias + 'l').show();
+    // $('#dall').show();
+    // $('#wasr').show();
+    $('#'+ homeTeamAlias + 'r').show();
+    $('#'+ awayTeamAlias + 'l').show();
     animateWithData();
 }
 
@@ -639,13 +639,13 @@ function eventDetails(gameDetails) {
     console.log(venue);
     awayTeam = gameDetails.summary.away.name;
     console.log(awayTeam);
-    awayTeamAlias = gameDetails.summary.away.alias;
+    awayTeamAlias = gameDetails.summary.away.alias.toLowerCase();
     console.log(awayTeamAlias);
     awayTeamPoints = gameDetails.summary.away.points;
     console.log(awayTeamPoints);
     homeTeam = gameDetails.summary.home.name;
     console.log(homeTeam);
-    homeTeamAlias = gameDetails.summary.home.alias;
+    homeTeamAlias = gameDetails.summary.home.alias.toLowerCase();
     console.log(homeTeamAlias);
     homeTeamPoints = gameDetails.summary.home.points;
     console.log(homeTeamPoints);
@@ -722,10 +722,10 @@ function consoleDrive(drivesArray) {
 
         endReason = drivesArray[i].end_reason;
         waitThis = drivesArray[i].cumulativeTime;
-        whoDrives = drivesArray[i].possession;
+        whoDrives = drivesArray[i].possession.toLowerCase();
         period = drivesArray[i].period;
 
-        if (whoDrives === homeTeamAlias && (period === 1 || period === 3)) {
+        if (whoDrives === homeTeamAlias /*&& (period === 1 || period === 3)*/) {
             directionLeft = true;
         }
         else { directionLeft = false; }
